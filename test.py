@@ -13,3 +13,5 @@ ys = [2, 4, 6]
 
 model.fit(xs, ys, epochs=1000)
 print(model.predict([7]))
+
+# test
