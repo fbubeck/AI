@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow import keras
+from time import time
 
+start = time()
 
 model = keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
 
@@ -22,3 +24,6 @@ model.fit(xs, ys, epochs=1000, callbacks=[tensorboard_callback])
 
 # Print Results
 print(model.predict(xs_test))
+
+end = time()
+print(f'It took {end - start} seconds!')
