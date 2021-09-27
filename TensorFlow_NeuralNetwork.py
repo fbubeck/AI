@@ -3,6 +3,7 @@ from tensorflow import keras
 import numpy as np
 from time import time
 
+# Startpunkt für Zeitmessung
 start = time()
 
 model = keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
@@ -26,12 +27,15 @@ model.fit(xs_train, ys_train, epochs=1000, callbacks=[tensorboard_callback])
 
 # Predictions
 y_pred = model.predict(xs_test)
-print("Predictions for inputs 7, 8, 9: ")
-print(y_pred)
+
+print('Prediction for number 7:', y_pred[0])
+print('Prediction for number 8:', y_pred[1])
+print('Prediction for number 9:', y_pred[2])
 
 # MSE
 print("Mean squared error: %.2f" %
       np.mean((y_pred - ys_test) ** 2))
 
+# Endpunkt für Zeitmessung
 end = time()
 print(f'It took {end - start} seconds!')
