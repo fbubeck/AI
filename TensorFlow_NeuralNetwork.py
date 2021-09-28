@@ -3,6 +3,7 @@ from tensorflow import keras
 import numpy as np
 from time import time
 
+
 # Startpunkt für Zeitmessung
 start = time()
 
@@ -20,7 +21,10 @@ ys_test = [14, 16, 18]
 
 # Callback für TensorBoard
 tensorboard_callback = tf.keras.callbacks.TensorBoard(
-    log_dir="/logs{}", histogram_freq=1)
+    log_dir="/logs{}",
+    histogram_freq=1,
+    profile_batch='500,520'
+)
 
 # Modelfitting
 model.fit(xs_train, ys_train, epochs=1000, callbacks=[tensorboard_callback])
