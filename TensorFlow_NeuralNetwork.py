@@ -6,7 +6,7 @@ from time import time
 from sklearn.metrics import mean_squared_error
 
 
-# Startpunkt für Zeitmessung
+# Start of Time Measuring
 start = time()
 
 # Initializing Model
@@ -46,7 +46,7 @@ print('Prediction for number 9:', y_pred[2])
 mse = mean_squared_error(ys_test, y_pred)
 print('MSE: ', mse)
 
-# Endpunkt für Zeitmessung
+# End of Time Measuring
 end = time()
 print('--- Profiler ---')
 print(f'Duration: {end - start} seconds')

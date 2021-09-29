@@ -3,7 +3,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
 from time import time
 
-# Startpunkt für Zeitmessung
+# Start of Time Measuring
 start = time()
 
 # Train Data
@@ -35,7 +35,7 @@ print('Prediction for number 9:', y_pred[2])
 print("Mean squared error: %.2f" %
       np.mean((y_pred - ys_test) ** 2))
 
-# Endpunkt für Zeitmessung
+# End of Time Measuring
 end = time()
 print('--- Profiler ---')
 print(f'Duration: {end - start} seconds')
