@@ -37,4 +37,5 @@ print("Mean squared error: %.2f" %
 
 # Endpunkt für Zeitmessung
 end = time()
-print(f'It took {end - start} seconds!')
+print('--- Profiler ---')
+print(f'Duration: {end - start} seconds')
