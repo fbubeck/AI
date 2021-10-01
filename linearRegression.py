@@ -4,7 +4,7 @@ import numpy as np
 from time import time
 
 # Start of Time Measuring
-start = time()
+
 
 # Train Data
 xs_train = [1, 2, 3]
@@ -22,10 +22,14 @@ ys_test = np.matrix(ys_test).T.A
 
 # Modelfitting
 model = linear_model.LinearRegression()
+start = time()
 model.fit(xs_train, ys_train)
+end = time()
 
 # Predictions
+start2 = time()
 y_pred = model.predict(xs_test)
+end2 = time()
 
 print('Prediction for number 7:', y_pred[0])
 print('Prediction for number 8:', y_pred[1])
@@ -36,6 +40,7 @@ print("Mean squared error: %.2f" %
       np.mean((y_pred - ys_test) ** 2))
 
 # End of Time Measuring
-end = time()
+
 print('--- Profiler ---')
 print(f'Duration: {end - start} seconds')
+print(f'Duration: {end2 - start2} seconds')
