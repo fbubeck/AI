@@ -2,17 +2,18 @@ from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
 from time import time
-
-# Start of Time Measuring
-
+from SampleData import x_train
+from SampleData import y_train
+from SampleData import x_test
+from SampleData import y_test
 
 # Train Data
-xs_train = [1, 2, 3]
-ys_train = [2, 4, 6]
+xs_train = x_train
+ys_train = y_train
 
 # Test Data
-xs_test = [7, 8, 9]
-ys_test = [14, 16, 18]
+xs_test = x_test
+ys_test = y_test
 
 # reshape 1D Arrays to 2D Arrays
 xs_train = np.matrix(xs_train).T.A
@@ -31,16 +32,11 @@ start2 = time()
 y_pred = model.predict(xs_test)
 end2 = time()
 
-print('Prediction for number 7:', y_pred[0])
-print('Prediction for number 8:', y_pred[1])
-print('Prediction for number 9:', y_pred[2])
-
 # MSE
+print('--- Summary ---')
 print("Mean squared error: %.2f" %
       np.mean((y_pred - ys_test) ** 2))
 
-# End of Time Measuring
-
 print('--- Profiler ---')
-print(f'Duration: {end - start} seconds')
-print(f'Duration: {end2 - start2} seconds')
+print(f'Duration Training: {end - start} seconds')
+print(f'Duration Inferenz: {end2 - start2} seconds')
