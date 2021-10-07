@@ -36,7 +36,7 @@ model.compile(optimizer=opt, loss='mean_squared_error')
 
 # Modelfitting
 start = time()
-model.fit(xs_train, ys_train, epochs=200)
+model.fit(xs_train, ys_train, epochs=50)
 end = time()
 
 # Predictions
