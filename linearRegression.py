@@ -8,18 +8,12 @@ from SampleData import x_test
 from SampleData import y_test
 
 # Train Data
-xs_train = x_train
-ys_train = y_train
+xs_train = np.matrix(x_train).T.A
+ys_train = np.matrix(y_train).T.A
 
 # Test Data
-xs_test = x_test
-ys_test = y_test
-
-# reshape 1D Arrays to 2D Arrays
-xs_train = np.matrix(xs_train).T.A
-ys_train = np.matrix(ys_train).T.A
-xs_test = np.matrix(xs_test).T.A
-ys_test = np.matrix(ys_test).T.A
+xs_test = np.matrix(x_test).T.A
+ys_test = np.matrix(y_test).T.A
 
 # Modelfitting
 model = linear_model.LinearRegression()
