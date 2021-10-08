@@ -53,7 +53,7 @@ print('--- Profiler ---')
 print(f'Duration Training: {end - start} seconds')
 print(f'Duration Inferenz: {end2 - start2} seconds')
 
-# Parameter (zB Learning Rate (min-max in 10 Schritten), Anzahl Layer, Anzahl Epochen) aus JSON Konfiguratonsfile laden
+# Parameter (zB Learning Rate (min-max in 10 Schritten), Anzahl Layer, Anzahl Epochen) aus JSON Konfigurationsfile laden
 # 1. Funktion: Training, return: Accuracy, Time
 # 2. Funktion Inferenz, return: Time
 # Varianz-Bias Trade off

@@ -4,10 +4,11 @@ import numpy as np
 from numpy import testing
 
 
-class SampleData(object):
+class SampleData():
     # Initializing Arrays
-    x_array = np.empty(50000, dtype=object)
-    y_array = np.empty(50000, dtype=object)
+    x_array = np.empty(dtype=object)
+    y_array = np.empty(dtype=object)
+    array_length = 0
 
     def __init__(self):
         pass
