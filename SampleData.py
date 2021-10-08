@@ -6,8 +6,8 @@ from numpy import testing
 
 class SampleData():
     # Initializing Arrays
-    x_array = np.empty(dtype=object)
-    y_array = np.empty(dtype=object)
+    x_array = np.empty(0, dtype=object)
+    y_array = np.empty(0, dtype=object)
     array_length = 0
 
     def __init__(self):
@@ -26,6 +26,7 @@ class SampleData():
 
         return SampleData.x_array, SampleData.y_array
 
+        # To Do
         # Variable für Länge der Zahlenreihe, für Anzahl der Punkte;
         # Funktion zum Ausführen (Calculate)
         # 1. Instanz Training, 2. Instanz Test
