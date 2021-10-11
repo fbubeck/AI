@@ -5,26 +5,18 @@ from numpy import testing
 
 
 class SampleData():
-    # Initializing Arrays
-    x_array = np.empty(0, dtype=object)
-    y_array = np.empty(0, dtype=object)
-    array_length = 0
+    def __init__(self, array_length):
+        self.array_length = array_length
+        self.x_array = np.empty(self.array_length, dtype=object)
+        self.y_array = np.empty(self.array_length, dtype=object)
 
-    def __init__(self):
-        pass
+    def get_Data(self):
+        for x in range(0, self.array_length):
+            random = randint(1, self.array_length)
+            self.x_array[x] = random
+            self.y_array[x] = random*2 + randint(-10, 10)
 
-    def calculate_data(array_length):
-        # Filling Arrays with random integers
-        for x in range(0, array_length):
-            random = randint(1, array_length)
-            SampleData.x_array[x] = random
-            SampleData.y_array[x] = random*2 + randint(-10, 10)
-
-    def get_Data(array_length):
-        SampleData.array_length = array_length
-        SampleData.calculate_data(SampleData.array_length)
-
-        return SampleData.x_array, SampleData.y_array
+        return self.x_array, self.y_array
 
         # To Do
         # Variable für Länge der Zahlenreihe, für Anzahl der Punkte;

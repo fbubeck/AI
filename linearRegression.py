@@ -9,14 +9,14 @@ class LinearRegression():
     model = 0
 
     def __init__(self, array_length):
-        self.train_data = SampleData.get_data(array_length)
-        self.test_data = SampleData.get_data(array_length)
+        self.sampleData = SampleData.SampleData(array_length)
+        self.train_data = self.sampleData.get_Data()
+        self.test_data = self.sampleData.get_Data()
 
-    def train():
-
-        # Train Data
-        xs_train = np.matrix(LinearRegression.x_train).T.A
-        ys_train = np.matrix(LinearRegression.y_train).T.A
+    def train(self):
+        # Training Data
+        xs_train = np.matrix(self.train_data[0]).T.A
+        ys_train = np.matrix(self.train_data[1]).T.A
 
         # Modelfitting
         LinearRegression.model = linear_model.LinearRegression()
@@ -27,13 +27,13 @@ class LinearRegression():
         # Time
         duration_training = end_training - start_training
 
-        print('--- Profiler ---')
+        print('------ LinearRegression ------')
         print(f'Duration Training: {duration_training} seconds')
 
-    def test():
+    def test(self):
         # Test Data
-        xs_test = np.matrix(LinearRegression.x_test).T.A
-        ys_test = np.matrix(LinearRegression.y_test).T.A
+        xs_test = np.matrix(self.test_data[0]).T.A
+        ys_test = np.matrix(self.test_data[1]).T.A
 
         # Predictions
         start_test = time()
@@ -43,12 +43,10 @@ class LinearRegression():
         # Time
         duration_test = end_test - start_test
 
+        print(f'Duration Inference: {duration_test} seconds')
+
         # MSE
-        print('--- Summary ---')
         mse = np.mean((y_pred - ys_test) ** 2)
         print("Mean squared error: %.2f" % mse)
-
-        print('--- Profiler ---')
-        print(f'Duration Inferenz: {duration_test} seconds')
 
         return duration_test, mse
