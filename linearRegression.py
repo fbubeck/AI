@@ -8,10 +8,9 @@ import SampleData
 class LinearRegression():
     model = 0
 
-    def __init__(self, array_length):
-        self.sampleData = SampleData.SampleData(array_length)
-        self.train_data = self.sampleData.get_Data()
-        self.test_data = self.sampleData.get_Data()
+    def __init__(self, train_data, test_data):
+        self.train_data = train_data
+        self.test_data = test_data
 
     def train(self):
         # Training Data

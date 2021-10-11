@@ -14,7 +14,7 @@ class SampleData():
         for x in range(0, self.array_length):
             random = randint(1, self.array_length)
             self.x_array[x] = random
-            self.y_array[x] = random*2 + randint(-10, 10)
+            self.y_array[x] = random*2 + randint(-15, 15)
 
         return self.x_array, self.y_array
 

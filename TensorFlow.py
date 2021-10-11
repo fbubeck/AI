@@ -4,16 +4,16 @@ from tensorflow.keras.optimizers import SGD
 import numpy as np
 from time import time
 import torch
+import datetime
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error
 import SampleData
 
 
 class TensorFlow():
-    def __init__(self, array_length):
-        self.sampleData = SampleData.SampleData(array_length)
-        self.train_data = self.sampleData.get_Data()
-        self.test_data = self.sampleData.get_Data()
+    def __init__(self, train_data, test_data):
+        self.train_data = train_data
+        self.test_data = test_data
         self.model = 0
 
     def train(self):
@@ -24,30 +24,35 @@ class TensorFlow():
             self.train_data[1], dtype=tf.int64)
 
         # Exploration
-        plt.plot(xs_train, ys_train)
-        plt.show()
+        #plt.plot(xs_train, ys_train)
+        # plt.show()
+
+        # Training Parameters
+        learning_rate = 0.001
+        n_epochs = 25
 
         # Initializing Model
         self.model = keras.Sequential(
             [keras.layers.Dense(units=1, input_shape=[1])])
 
         # Define Optimizer
-        opt = tf.keras.optimizers.Adam(lr=0.001)
+        opt = tf.keras.optimizers.Adam(lr=learning_rate)
 
         self.model.compile(
             optimizer=opt, loss='mean_squared_error')
 
         # Callback für TensorBoard
+        log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         tensorboard_callback = tf.keras.callbacks.TensorBoard(
-            log_dir="/logs{}",
+            log_dir=log_dir,
             histogram_freq=1,
             profile_batch='500,520'
         )
 
         # Modelfitting
         start_training = time()
-        self.model.fit(xs_train, ys_train, epochs=50,
-                       callbacks=[tensorboard_callback])
+        history = self.model.fit(xs_train, ys_train, validation_split=0.33, epochs=n_epochs, callbacks=[
+                                 tensorboard_callback])
         end_training = time()
 
         # Time
@@ -55,6 +60,15 @@ class TensorFlow():
 
         print('------ TensorFlow ------')
         print(f'Duration Training: {duration_training} seconds')
+
+        # summarize history for loss
+        plt.plot(history.history['loss'], 'blue')
+        plt.plot(history.history['val_loss'], 'red')
+        plt.title('model loss')
+        plt.ylabel('loss')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper right')
+        plt.show()
 
     def test(self):
        # Test Data (Preprocessing)
