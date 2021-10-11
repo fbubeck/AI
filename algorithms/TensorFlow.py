@@ -1,13 +1,11 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import SGD
-import numpy as np
 from time import time
-import torch
 import datetime
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error
-import SampleData
+import json
 
 
 class TensorFlow():
@@ -17,6 +15,10 @@ class TensorFlow():
         self.model = 0
 
     def train(self):
+        # read config.json
+        with open('config/config.json') as file:
+            config = json.load(file)
+
         # Training Data (Preprocessing)
         xs_train = tf.convert_to_tensor(
             self.train_data[0], dtype=tf.int64)
@@ -28,12 +30,13 @@ class TensorFlow():
         # plt.show()
 
         # Training Parameters
-        learning_rate = 0.001
-        n_epochs = 25
+        learning_rate = config["TensorFlow"]["learning_rate"]
+        n_epochs = config["TensorFlow"]["n_epochs"]
+        units = config["TensorFlow"]["n_units"]
 
         # Initializing Model
         self.model = keras.Sequential(
-            [keras.layers.Dense(units=1, input_shape=[1])])
+            [keras.layers.Dense(units=units, input_shape=[1])])
 
         # Define Optimizer
         opt = tf.keras.optimizers.Adam(lr=learning_rate)
@@ -87,7 +90,8 @@ class TensorFlow():
 
         # MSE (Mean Squarred Error)
         mse = mean_squared_error(ys_test, y_pred)
-        print('Mean squared error: ', mse)
+        print("Mean squared error: %.2f" % mse)
+        print("")
 
         return duration_test, mse
 

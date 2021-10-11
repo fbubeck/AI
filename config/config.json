@@ -1,0 +1,18 @@
+{
+    "GlobalParameters":{
+        "n_numbers":50000,
+        "min_bias":-15,
+        "max_bias":15
+    },
+    "TensorFlow":{
+        "learning_rate":0.001,
+        "n_epochs":25,
+        "n_units":1
+    },
+    "LinearRegression":{
+        "empty":"empty"
+    },
+    "DecisionTree":{
+        "empty":"empty"
+    }
+}
