@@ -1,8 +1,8 @@
 {
     "GlobalParameters":{
         "n_numbers":50000,
-        "min_bias":-15,
-        "max_bias":15
+        "min_bias":-10,
+        "max_bias":10
     },
     "TensorFlow":{
         "learning_rate":0.001,

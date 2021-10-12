@@ -94,12 +94,3 @@ class TensorFlow():
         print("")
 
         return duration_test, mse
-
-    # Parameter (zB Learning Rate (min-max in 10 Schritten), Anzahl Layer, Anzahl Epochen) aus JSON Konfigurationsfile laden
-    # 1. Funktion: Training, return: Accuracy, Time
-    # 2. Funktion Inferenz, return: Time
-    # Varianz-Bias Trade off
-    # Funktion in TensorFlow: Trainings, Testfehler ausgeben
-    # Plots: Trainingsdaten, Testdaten, Accuracy vs Rechenzeit, Overfitting-plot
-    # Weitere Modelle trainieren
-    # Classcompliance
