@@ -1,9 +1,9 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import SGD
+from matplotlib import pyplot as plt
 from time import time
 import datetime
-from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error
 import json
 
@@ -24,10 +24,6 @@ class TensorFlow():
             self.train_data[0], dtype=tf.int64)
         ys_train = tf.convert_to_tensor(
             self.train_data[1], dtype=tf.int64)
-
-        # Exploration
-        #plt.plot(xs_train, ys_train)
-        # plt.show()
 
         # Training Parameters
         learning_rate = config["TensorFlow"]["learning_rate"]

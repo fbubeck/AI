@@ -3,6 +3,7 @@ from algorithms import LinearRegression
 from algorithms import DecisionTree
 from algorithms import RandomForestRegressor
 from data import SampleData
+from data import Exploration
 import json
 
 
@@ -18,6 +19,10 @@ def main():
     sampleData = SampleData.SampleData(n_numbers, min_bias, max_bias)
     train_data = sampleData.get_Data()
     test_data = sampleData.get_Data()
+
+    # Data Exploration
+    exploration = Exploration.Exploration(train_data, test_data)
+    exploration.analyseData()
 
     # Creating Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
