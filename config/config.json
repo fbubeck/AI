@@ -1,12 +1,12 @@
 {
     "GlobalParameters":{
         "n_numbers":50000,
-        "min_bias":-10,
-        "max_bias":10
+        "min_bias":-5,
+        "max_bias":5
     },
     "TensorFlow":{
         "learning_rate":0.001,
-        "n_epochs":25,
+        "n_epochs":30,
         "n_units":1
     },
     "LinearRegression":{
@@ -14,5 +14,9 @@
     },
     "DecisionTree":{
         "empty":"empty"
+    },
+    "RandomForest":{
+        "n_estimators":100,
+        "random_state":0
     }
 }

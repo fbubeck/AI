@@ -1,6 +1,7 @@
 from algorithms import TensorFlow
 from algorithms import LinearRegression
 from algorithms import DecisionTree
+from algorithms import RandomForestRegressor
 from data import SampleData
 import json
 
@@ -22,6 +23,8 @@ def main():
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
     linearRegression = LinearRegression.LinearRegression(train_data, test_data)
     decisionTree = DecisionTree.DecisionTree(train_data, test_data)
+    randomForest = RandomForestRegressor.RandomForest(
+        train_data, test_data)
 
     # Start Tensorflow
     tensorFlow.train()
@@ -34,6 +37,10 @@ def main():
     # Start Decision Tree
     decisionTree.train()
     decisionTree.test()
+
+    # Start Random Forest
+    randomForest.train()
+    randomForest.test()
 
 
 if __name__ == "__main__":

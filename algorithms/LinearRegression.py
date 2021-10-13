@@ -1,5 +1,4 @@
-from sklearn import linear_model
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn import linear_model, metrics
 import numpy as np
 from time import time
 
@@ -44,7 +43,7 @@ class LinearRegression():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = np.mean((y_pred - ys_test) ** 2)
+        mse = metrics.mean_squared_error(ys_test, y_pred)
         print("Mean squared error: %.2f" % mse)
         print("")
 

@@ -1,5 +1,5 @@
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn import metrics
 import numpy as np
 from time import time
 
@@ -44,7 +44,8 @@ class DecisionTree():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = mean_squared_error(ys_test, y_pred)
+        mse = metrics.mean_squared_error(ys_test, y_pred)
         print("Mean squared error: %.2f" % mse)
+        print("")
 
         return duration_test, mse
