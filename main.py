@@ -12,10 +12,12 @@ def main():
     with open('config/config.json') as file:
         config = json.load(file)
 
-    # Get Sample Data
+    # Get Global Parameters from config file
     n_numbers = config["GlobalParameters"]["n_numbers"]
     min_bias = config["GlobalParameters"]["min_bias"]
     max_bias = config["GlobalParameters"]["max_bias"]
+
+    # Get Sample Data
     sampleData = SampleData.SampleData(n_numbers, min_bias, max_bias)
     train_data = sampleData.get_Data()
     test_data = sampleData.get_Data()
