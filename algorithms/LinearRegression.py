@@ -27,6 +27,8 @@ class LinearRegression():
         print('------ LinearRegression ------')
         print(f'Duration Training: {duration_training} seconds')
 
+        return duration_training
+
     def test(self):
         # Test Data
         xs_test = np.matrix(self.test_data[0]).T.A

@@ -11,12 +11,10 @@ class Exploration():
         xs_train = np.matrix(self.train_data[0]).T.A
         ys_train = np.matrix(self.train_data[1]).T.A
 
-        plt.plot(xs_train)
-        plt.ylim(-10000, 100000)
-        plt.xlim(-10000, 100000)
-        plt.show()
-
-        plt.plot(ys_train)
-        plt.ylim(-10000, 100000)
-        plt.xlim(-10000, 100000)
+        fig, axs = plt.subplots(2)
+        fig.suptitle('Training Data (Input/Output)')
+        axs[0].plot(xs_train, 'blue')
+        axs[1].plot(ys_train, 'red')
+        plt.ylim(0, 100000)
+        plt.xlim(0, 100000)
         plt.show()

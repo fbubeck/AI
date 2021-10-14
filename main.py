@@ -5,6 +5,7 @@ from algorithms import RandomForestRegressor
 from data import SampleData
 from data import Exploration
 import json
+from matplotlib import pyplot as plt
 
 
 def main():
@@ -34,20 +35,31 @@ def main():
         train_data, test_data)
 
     # Start Tensorflow
-    tensorFlow.train()
-    tensorFlow.test()
+    tensorFlow_training = tensorFlow.train()
+    tensorFlow_test = tensorFlow.test()
 
     # Start Linear Regression
-    linearRegression.train()
-    linearRegression.test()
+    linearRegression_training = linearRegression.train()
+    linearRegression_test = linearRegression.test()
 
     # Start Decision Tree
-    decisionTree.train()
-    decisionTree.test()
+    decisionTree_training = decisionTree.train()
+    decisionTree_test = decisionTree.test()
 
     # Start Random Forest
-    randomForest.train()
-    randomForest.test()
+    randomForest_training = randomForest.train()
+    randomForest_test = randomForest.test()
+
+    # Plot Summary
+    fig = plt.figure()
+    plt.ylabel('Training Duration in seconds (log scale)')
+    plt.title('Training Comparison')
+    plt.yscale('log')
+    x = ['TensorFlow', 'linearRegression', 'decisionTree', 'randomForest']
+    y = [tensorFlow_training, linearRegression_training,
+         decisionTree_training, randomForest_training, ]
+    plt.bar(x, y)
+    plt.show()
 
 
 if __name__ == "__main__":

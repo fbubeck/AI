@@ -69,6 +69,8 @@ class TensorFlow():
         plt.legend(['train', 'test'], loc='upper right')
         plt.show()
 
+        return duration_training
+
     def test(self):
        # Test Data (Preprocessing)
         xs_test = tf.convert_to_tensor(self.test_data[0], dtype=tf.int64)
