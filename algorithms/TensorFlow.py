@@ -50,7 +50,7 @@ class TensorFlow():
 
         # Modelfitting
         start_training = time()
-        history = self.model.fit(xs_train, ys_train, validation_split=0.33, epochs=n_epochs, callbacks=[
+        history = self.model.fit(xs_train, ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
                                  tensorboard_callback])
         end_training = time()
 
@@ -63,11 +63,13 @@ class TensorFlow():
         # summarize history for loss
         plt.plot(history.history['loss'], 'blue')
         plt.plot(history.history['val_loss'], 'red')
-        plt.title('model loss')
-        plt.ylabel('loss')
+        plt.title('Training loss')
+        plt.ylabel('loss (log scale)')
         plt.xlabel('epoch')
-        plt.legend(['train', 'test'], loc='upper right')
+        plt.yscale('log')
+        plt.legend(['train_loss', 'val_loss'], loc='upper right')
         plt.show()
+        #plot abspeichern
 
         return duration_training
 

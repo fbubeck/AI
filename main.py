@@ -20,8 +20,8 @@ def main():
 
     # Get Sample Data
     sampleData = SampleData.SampleData(n_numbers, min_bias, max_bias)
-    train_data = sampleData.get_Data()
-    test_data = sampleData.get_Data()
+    train_data = sampleData.getData()
+    test_data = sampleData.getData()
 
     # Data Exploration
     exploration = Exploration.Exploration(train_data, test_data)
@@ -53,12 +53,12 @@ def main():
     # Plot Summary
     fig = plt.figure()
     plt.ylabel('Training Duration in seconds (log scale)')
-    plt.title('Training Comparison')
+    plt.title('Training duration and mse of different algorithms')
     plt.yscale('log')
     x = ['TensorFlow', 'linearRegression', 'decisionTree', 'randomForest']
-    y = [tensorFlow_training, linearRegression_training,
-         decisionTree_training, randomForest_training, ]
-    plt.bar(x, y)
+    y = [tensorFlow_training, linearRegression_training, decisionTree_training, randomForest_training, ]
+    sizes = [tensorFlow_test[1]*10, linearRegression_test[1]*10, decisionTree_test[1]*10, randomForest_test[1]*10]
+    plt.scatter(x, y, s=sizes, c=['blue', 'red', 'green', 'orange'], alpha=0.4)
     plt.show()
 
 

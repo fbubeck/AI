@@ -11,10 +11,13 @@ class Exploration():
         xs_train = np.matrix(self.train_data[0]).T.A
         ys_train = np.matrix(self.train_data[1]).T.A
 
+        xs_train_sorted = np.sort(xs_train)
+        ys_train_sorted = np.sort(ys_train)
+
         fig, axs = plt.subplots(2)
         fig.suptitle('Training Data (Input/Output)')
-        axs[0].plot(xs_train, 'blue')
-        axs[1].plot(ys_train, 'red')
+        axs[0].plot(xs_train_sorted, 'blue')
+        axs[1].plot(ys_train_sorted, 'red')
         plt.ylim(0, 100000)
         plt.xlim(0, 100000)
         plt.show()
