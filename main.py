@@ -25,7 +25,7 @@ def main():
 
     # Data Exploration
     exploration = Exploration.Exploration(train_data, test_data)
-    exploration.analyseData()
+    # exploration.analyseData()
 
     # Creating Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
@@ -41,6 +41,7 @@ def main():
     # Start Linear Regression
     linearRegression_training = linearRegression.train()
     linearRegression_test = linearRegression.test()
+    linearRegression.plot()
 
     # Start Decision Tree
     decisionTree_training = decisionTree.train()
@@ -56,9 +57,15 @@ def main():
     plt.title('Training duration and mse of different algorithms')
     plt.yscale('log')
     x = ['TensorFlow', 'linearRegression', 'decisionTree', 'randomForest']
-    y = [tensorFlow_training, linearRegression_training, decisionTree_training, randomForest_training, ]
-    sizes = [tensorFlow_test[1]*10, linearRegression_test[1]*10, decisionTree_test[1]*10, randomForest_test[1]*10]
+    y = [tensorFlow_training, linearRegression_training,
+         decisionTree_training, randomForest_training, ]
+    sizes = [tensorFlow_test[1]*10, linearRegression_test[1]
+             * 10, decisionTree_test[1]*10, randomForest_test[1]*10]
     plt.scatter(x, y, s=sizes, c=['blue', 'red', 'green', 'orange'], alpha=0.4)
+    plt.show()
+
+    plt.plot(tensorFlow_test[1], tensorFlow_training, 'r', linearRegression_test[1], linearRegression_training,
+             'b', decisionTree_test[1], decisionTree_training, 'g', randomForest_test[1], randomForest_training, 'orange')
     plt.show()
 
 

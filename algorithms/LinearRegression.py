@@ -1,5 +1,6 @@
 from sklearn import linear_model, metrics
 import numpy as np
+from matplotlib import pyplot as plt
 from time import time
 
 
@@ -12,13 +13,13 @@ class LinearRegression():
 
     def train(self):
         # Training Data
-        xs_train = np.matrix(self.train_data[0]).T.A
-        ys_train = np.matrix(self.train_data[1]).T.A
+        self.xs_train = np.matrix(self.train_data[0]).T.A
+        self.ys_train = np.matrix(self.train_data[1]).T.A
 
         # Modelfitting
         LinearRegression.model = linear_model.LinearRegression()
         start_training = time()
-        LinearRegression.model.fit(xs_train, ys_train)
+        LinearRegression.model.fit(self.xs_train, self.ys_train)
         end_training = time()
 
         # Time
@@ -26,17 +27,18 @@ class LinearRegression():
 
         print('------ LinearRegression ------')
         print(f'Duration Training: {duration_training} seconds')
+        print('Coefficients: ', LinearRegression.model.coef_)
 
         return duration_training
 
     def test(self):
         # Test Data
-        xs_test = np.matrix(self.test_data[0]).T.A
-        ys_test = np.matrix(self.test_data[1]).T.A
+        self.xs_test = np.matrix(self.test_data[0]).T.A
+        self.ys_test = np.matrix(self.test_data[1]).T.A
 
         # Predictions
         start_test = time()
-        y_pred = LinearRegression.model.predict(xs_test)
+        self.y_pred = LinearRegression.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -45,8 +47,19 @@ class LinearRegression():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = metrics.mean_squared_error(ys_test, y_pred)
+        mse = metrics.mean_squared_error(self.ys_test, self.y_pred)
         print("Mean squared error: %.2f" % mse)
         print("")
 
+        
+
         return duration_test, mse
+
+    def plot(self):
+        plt.scatter(self.xs_test, self.ys_test ,color='b')
+        plt.plot(self.xs_test, self.ys_test,color='r')
+        plt.title('Linear Regression Model')
+        plt.ylabel('y (Test Data)')
+        plt.xlabel('x (Test Data)')
+        plt.show()
+

@@ -20,10 +20,8 @@ class TensorFlow():
             config = json.load(file)
 
         # Training Data (Preprocessing)
-        xs_train = tf.convert_to_tensor(
-            self.train_data[0], dtype=tf.int64)
-        ys_train = tf.convert_to_tensor(
-            self.train_data[1], dtype=tf.int64)
+        self.xs_train = tf.convert_to_tensor(self.train_data[0], dtype=tf.int64)
+        self.ys_train = tf.convert_to_tensor(self.train_data[1], dtype=tf.int64)
 
         # Training Parameters
         learning_rate = config["TensorFlow"]["learning_rate"]
@@ -50,7 +48,7 @@ class TensorFlow():
 
         # Modelfitting
         start_training = time()
-        history = self.model.fit(xs_train, ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
+        self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
                                  tensorboard_callback])
         end_training = time()
 
@@ -60,27 +58,16 @@ class TensorFlow():
         print('------ TensorFlow ------')
         print(f'Duration Training: {duration_training} seconds')
 
-        # summarize history for loss
-        plt.plot(history.history['loss'], 'blue')
-        plt.plot(history.history['val_loss'], 'red')
-        plt.title('Training loss')
-        plt.ylabel('loss (log scale)')
-        plt.xlabel('epoch')
-        plt.yscale('log')
-        plt.legend(['train_loss', 'val_loss'], loc='upper right')
-        plt.show()
-        #plot abspeichern
-
         return duration_training
 
     def test(self):
        # Test Data (Preprocessing)
-        xs_test = tf.convert_to_tensor(self.test_data[0], dtype=tf.int64)
-        ys_test = tf.convert_to_tensor(self.test_data[1], dtype=tf.int64)
+        self.xs_test = tf.convert_to_tensor(self.test_data[0], dtype=tf.int64)
+        self.ys_test = tf.convert_to_tensor(self.test_data[1], dtype=tf.int64)
 
         # Predict Data
         start_test = time()
-        y_pred = self.model.predict(xs_test)
+        self.y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -89,8 +76,20 @@ class TensorFlow():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE (Mean Squarred Error)
-        mse = mean_squared_error(ys_test, y_pred)
+        mse = mean_squared_error(self.ys_test, self.y_pred)
         print("Mean squared error: %.2f" % mse)
         print("")
 
         return duration_test, mse
+
+    def plot(self):
+        # Plot loss and val_loss
+        plt.plot(self.history.history['loss'], 'blue')
+        plt.plot(self.history.history['val_loss'], 'red')
+        plt.title('Training loss')
+        plt.ylabel('loss (log scale)')
+        plt.xlabel('epoch')
+        plt.yscale('log')
+        plt.legend(['train_loss', 'val_loss'], loc='upper right')
+        plt.show()
+        # ToDo: plot abspeichern als Datei
