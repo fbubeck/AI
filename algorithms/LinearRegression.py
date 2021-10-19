@@ -56,10 +56,19 @@ class LinearRegression():
         return duration_test, mse
 
     def plot(self):
-        plt.scatter(self.xs_test, self.ys_test ,color='b')
-        plt.plot(self.xs_test, self.ys_test,color='r')
+        plt.scatter(self.xs_train, self.ys_train ,color='b', s = 5)
+        plt.plot(self.xs_train, self.y_pred,color='r')
+        plt.title('Linear Regression Model')
+        plt.ylabel('y (Train Data)')
+        plt.xlabel('x (Train Data)')
+        plt.show()
+
+        plt.scatter(self.xs_test, self.ys_test ,color='b', s = 5)
+        plt.plot(self.xs_test, self.y_pred,color='r')
         plt.title('Linear Regression Model')
         plt.ylabel('y (Test Data)')
         plt.xlabel('x (Test Data)')
         plt.show()
+
+
 

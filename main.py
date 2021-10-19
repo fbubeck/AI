@@ -6,6 +6,7 @@ from data import SampleData
 from data import Exploration
 import json
 from matplotlib import pyplot as plt
+from sklearn.model_selection import train_test_split
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
 
     # Data Exploration
     exploration = Exploration.Exploration(train_data, test_data)
-    # exploration.analyseData()
+    exploration.analyseData()
 
     # Creating Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
@@ -37,6 +38,7 @@ def main():
     # Start Tensorflow
     tensorFlow_training = tensorFlow.train()
     tensorFlow_test = tensorFlow.test()
+    tensorFlow.plot()
 
     # Start Linear Regression
     linearRegression_training = linearRegression.train()
@@ -53,19 +55,25 @@ def main():
 
     # Plot Summary
     fig = plt.figure()
-    plt.ylabel('Training Duration in seconds (log scale)')
+    plt.ylabel('Training Duration [in seconds]')
+    plt.xlabel('Mean Squarred Error')
     plt.title('Training duration and mse of different algorithms')
-    plt.yscale('log')
-    x = ['TensorFlow', 'linearRegression', 'decisionTree', 'randomForest']
-    y = [tensorFlow_training, linearRegression_training,
-         decisionTree_training, randomForest_training, ]
-    sizes = [tensorFlow_test[1]*10, linearRegression_test[1]
-             * 10, decisionTree_test[1]*10, randomForest_test[1]*10]
-    plt.scatter(x, y, s=sizes, c=['blue', 'red', 'green', 'orange'], alpha=0.4)
+    plt.scatter(tensorFlow_test[1], tensorFlow_training, s=100, c='blue', alpha=0.4)
+    plt.scatter(linearRegression_test[1], linearRegression_training, s=100, c='red', alpha=0.4)
+    plt.scatter(decisionTree_test[1], decisionTree_training, s=100, c='green', alpha=0.4)
+    plt.scatter(randomForest_test[1], randomForest_training, s=100, c='orange', alpha=0.4)
+    plt.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc ="upper left")
     plt.show()
 
-    plt.plot(tensorFlow_test[1], tensorFlow_training, 'r', linearRegression_test[1], linearRegression_training,
-             'b', decisionTree_test[1], decisionTree_training, 'g', randomForest_test[1], randomForest_training, 'orange')
+    fig = plt.figure()
+    plt.ylabel('Inference Duration [in seconds]')
+    plt.xlabel('Mean Squarred Error')
+    plt.title('Inference duration and mse of different algorithms')
+    plt.scatter(tensorFlow_test[1], tensorFlow_test[0], s=100, c='blue', alpha=0.4)
+    plt.scatter(linearRegression_test[1], linearRegression_test[0], s=100, c='red', alpha=0.4)
+    plt.scatter(decisionTree_test[1], decisionTree_test[0], s=100, c='green', alpha=0.4)
+    plt.scatter(randomForest_test[1], randomForest_test[0], s=100, c='orange', alpha=0.4)
+    plt.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc ="upper left")
     plt.show()
 
 
