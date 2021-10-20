@@ -18,4 +18,4 @@ class Exploration():
         fig.suptitle('Training Data (Input/Output)')
         axs[0].plot(xs_train_sorted, 'blue')
         axs[1].plot(ys_train_sorted, 'red')
-        plt.show()
+        plt.savefig('plots/DataExploration.png')

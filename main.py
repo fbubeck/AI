@@ -53,28 +53,21 @@ def main():
     randomForest_training = randomForest.train()
     randomForest_test = randomForest.test()
 
-    # Plot Summary
+    # Evaluation
     fig = plt.figure()
-    plt.ylabel('Training Duration [in seconds]')
+    plt.ylabel('Duration [in seconds]')
     plt.xlabel('Mean Squarred Error')
-    plt.title('Training duration and mse of different algorithms')
-    plt.scatter(tensorFlow_test[1], tensorFlow_training, s=100, c='blue', alpha=0.4)
-    plt.scatter(linearRegression_test[1], linearRegression_training, s=100, c='red', alpha=0.4)
-    plt.scatter(decisionTree_test[1], decisionTree_training, s=100, c='green', alpha=0.4)
-    plt.scatter(randomForest_test[1], randomForest_training, s=100, c='orange', alpha=0.4)
-    plt.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc ="upper left")
-    plt.show()
-
-    fig = plt.figure()
-    plt.ylabel('Inference Duration [in seconds]')
-    plt.xlabel('Mean Squarred Error')
-    plt.title('Inference duration and mse of different algorithms')
-    plt.scatter(tensorFlow_test[1], tensorFlow_test[0], s=100, c='blue', alpha=0.4)
-    plt.scatter(linearRegression_test[1], linearRegression_test[0], s=100, c='red', alpha=0.4)
-    plt.scatter(decisionTree_test[1], decisionTree_test[0], s=100, c='green', alpha=0.4)
-    plt.scatter(randomForest_test[1], randomForest_test[0], s=100, c='orange', alpha=0.4)
-    plt.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc ="upper left")
-    plt.show()
+    plt.title('Training/Inference duration and mse of different algorithms')
+    plt.scatter(tensorFlow_test[1], tensorFlow_training, s=100, c='blue', alpha=0.3)
+    plt.scatter(linearRegression_test[1], linearRegression_training, s=100, c='red', alpha=0.3)
+    plt.scatter(decisionTree_test[1], decisionTree_training, s=100, c='green', alpha=0.3)
+    plt.scatter(randomForest_test[1], randomForest_training, s=100, c='orange', alpha=0.3)
+    plt.scatter(tensorFlow_test[1], tensorFlow_test[0], s=100, c='blue', alpha=1)
+    plt.scatter(linearRegression_test[1], linearRegression_test[0], s=100, c='red', alpha=1)
+    plt.scatter(decisionTree_test[1], decisionTree_test[0], s=100, c='green', alpha=1)
+    plt.scatter(randomForest_test[1], randomForest_test[0], s=100, c='orange', alpha=1)
+    plt.legend(["TensorFlow Neural Network (Training)", "Linear Regression (Training)", "Decision Tree Regressor (Training)", "Random Forest Regressor (Training)", "TensorFlow Neural Network (Inference)", "Linear Regression (Inference)", "Decision Tree Regressor (Inference)", "Random Forest Regressor(Inference)"], loc ="upper left")
+    plt.savefig('plots/Algorithms_Evaluation.png')
 
 
 if __name__ == "__main__":

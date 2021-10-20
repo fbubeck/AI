@@ -91,5 +91,4 @@ class TensorFlow():
         plt.xlabel('epoch')
         plt.yscale('log')
         plt.legend(['train_loss', 'val_loss'], loc='upper right')
-        plt.show()
-        # ToDo: plot abspeichern als Datei
+        plt.savefig('plots/TensorFlow_Loss-Epochs-Plot.png')
