@@ -8,7 +8,6 @@ import Evaluation
 import json
 
 
-
 def main():
     # read config.json
     with open('config/config.json') as file:
@@ -52,6 +51,10 @@ def main():
     # Start Random Forest
     randomForest_training = randomForest.train()
     randomForest_test = randomForest.test()
+
+    Algorithms_Evaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
+                                                  tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
+    Algorithms_Evaluation.evaluateAlgorithms()
 
 
 if __name__ == "__main__":

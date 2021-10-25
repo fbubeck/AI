@@ -19,3 +19,4 @@ class Exploration():
         __axs[0].plot(xs_train_sorted, 'blue')
         __axs[1].plot(ys_train_sorted, 'red')
         plt.savefig('plots/DataExploration.png')
+        print("Exploration Plot saved...")

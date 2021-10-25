@@ -20,8 +20,10 @@ class TensorFlow():
             config = json.load(file)
 
         # Training Data (Preprocessing)
-        self.xs_train = tf.convert_to_tensor(self.train_data[0], dtype=tf.int64)
-        self.ys_train = tf.convert_to_tensor(self.train_data[1], dtype=tf.int64)
+        self.xs_train = tf.convert_to_tensor(
+            self.train_data[0], dtype=tf.int64)
+        self.ys_train = tf.convert_to_tensor(
+            self.train_data[1], dtype=tf.int64)
 
         # Training Parameters
         learning_rate = config["TensorFlow"]["learning_rate"]
@@ -49,7 +51,7 @@ class TensorFlow():
         # Modelfitting
         start_training = time()
         self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
-                                 tensorboard_callback])
+            tensorboard_callback])
         end_training = time()
 
         # Time
@@ -92,3 +94,4 @@ class TensorFlow():
         plt.yscale('log')
         plt.legend(['train_loss', 'val_loss'], loc='upper right')
         plt.savefig('plots/TensorFlow_Loss-Epochs-Plot.png')
+        print("TensorFlow loss Plot saved...")
