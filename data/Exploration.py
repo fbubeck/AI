@@ -14,8 +14,8 @@ class Exploration():
         xs_train_sorted = np.sort(xs_train)
         ys_train_sorted = np.sort(ys_train)
 
-        fig, axs = plt.subplots(2)
-        fig.suptitle('Training Data (Input/Output)')
-        axs[0].plot(xs_train_sorted, 'blue')
-        axs[1].plot(ys_train_sorted, 'red')
+        __fig, __axs = plt.subplots(2)
+        __fig.suptitle('Training Data (Input/Output)')
+        __axs[0].plot(xs_train_sorted, 'blue')
+        __axs[1].plot(ys_train_sorted, 'red')
         plt.savefig('plots/DataExploration.png')

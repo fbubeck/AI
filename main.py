@@ -6,7 +6,7 @@ from data import SampleData
 from data import Exploration
 import json
 from matplotlib import pyplot as plt
-from sklearn.model_selection import train_test_split
+
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
     randomForest_test = randomForest.test()
 
     # Evaluation
-    fig = plt.figure()
+    __fig = plt.figure()
     plt.ylabel('Duration [in seconds]')
     plt.xlabel('Mean Squarred Error')
     plt.title('Training/Inference duration and mse of different algorithms')
