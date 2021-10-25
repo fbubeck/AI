@@ -27,31 +27,32 @@ def main():
     exploration = Exploration.Exploration(train_data, test_data)
     exploration.analyseData()
 
-    # Creating Objects
+    # Creating Algorithm Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
     linearRegression = LinearRegression.LinearRegression(train_data, test_data)
     decisionTree = DecisionTree.DecisionTree(train_data, test_data)
     randomForest = RandomForestRegressor.RandomForest(
         train_data, test_data)
 
-    # Start Tensorflow
+    # Tensorflow
     tensorFlow_training = tensorFlow.train()
     tensorFlow_test = tensorFlow.test()
     tensorFlow.plot()
 
-    # Start Linear Regression
+    # Linear Regression
     linearRegression_training = linearRegression.train()
     linearRegression_test = linearRegression.test()
     linearRegression.plot()
 
-    # Start Decision Tree
+    # Decision Tree
     decisionTree_training = decisionTree.train()
     decisionTree_test = decisionTree.test()
 
-    # Start Random Forest
+    # Random Forest
     randomForest_training = randomForest.train()
     randomForest_test = randomForest.test()
 
+    # Algorithm Comparison/Evaluation
     Algorithms_Evaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
                                                   tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
     Algorithms_Evaluation.evaluateAlgorithms()
