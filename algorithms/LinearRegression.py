@@ -60,6 +60,7 @@ class LinearRegression():
         plt.ylabel('y (Train Data)')
         plt.xlabel('x (Train Data)')
         plt.savefig('plots/LinearRegression_Training-Model-Viz.png')
+        plt.show()
 
         plt.scatter(self.xs_test, self.ys_test, color='b', s=5)
         plt.plot(self.xs_test, self.y_pred, color='r')
@@ -67,4 +68,6 @@ class LinearRegression():
         plt.ylabel('y (Test Data)')
         plt.xlabel('x (Test Data)')
         plt.savefig('plots/LinearRegression_Test-Model-Viz.png')
+        plt.show()
         print("Linear Regression Model Plot saved...")
+        print("")

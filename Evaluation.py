@@ -40,4 +40,6 @@ class Evaluation:
         plt.legend(["TensorFlow Neural Network (Training)", "Linear Regression (Training)", "Decision Tree Regressor (Training)", "Random Forest Regressor (Training)",
                    "TensorFlow Neural Network (Inference)", "Linear Regression (Inference)", "Decision Tree Regressor (Inference)", "Random Forest Regressor(Inference)"], loc="upper left")
         plt.savefig('plots/Algorithms_Evaluation.png')
+        plt.show()
         print("Evaluation Plot saved...")
+        print("")
