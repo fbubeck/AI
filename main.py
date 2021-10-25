@@ -9,6 +9,9 @@ import json
 
 
 def main():
+    print("Starting...")
+    print("")
+
     # read config.json
     with open('config/config.json') as file:
         config = json.load(file)
@@ -53,9 +56,9 @@ def main():
     randomForest_test = randomForest.test()
 
     # Algorithm Comparison/Evaluation
-    Algorithms_Evaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
-                                                  tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
-    Algorithms_Evaluation.evaluateAlgorithms()
+    AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
+                                                 tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
+    AlgorithmsEvaluation.evaluateAlgorithms()
 
 
 if __name__ == "__main__":
