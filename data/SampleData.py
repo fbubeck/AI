@@ -14,16 +14,16 @@ class SampleData():
         self.varianz = 0
 
     def get_Data(self):
+        # Befülle x und y Arrays mit random Werten; formula: y= 2*x
+        # Erzeuge zusätzlich einen künstlichen Noice mit random Werten zwischen min_bias und max_bias und addiere ihn zu y-Werten
         for x in range(0, self.array_length):
             IntRandom = random.randint(1, self.array_length)
             self.x_array[x] = IntRandom
             self.y_array[x] = IntRandom*2
             self.noice[x] = random.randint(self.min_bias, self.max_bias)
-
-        # Varianz des Noice für Berechnung des MSE
-        self.varianz = np.var(self.noice)
-
-        for x in range(0, self.array_length):
             self.y_array[x] += self.noice[x]
+
+        # Berechne die Varianz des Noice für die Berechnung des MSE
+        self.varianz = np.var(self.noice)          
 
         return self.x_array, self.y_array, self.varianz
