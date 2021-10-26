@@ -57,11 +57,12 @@ class LinearRegression():
     def plot(self):
         px = 1/plt.rcParams['figure.dpi']  
         __fig = plt.figure(figsize=(800*px, 600*px))
-        plt.scatter(self.xs_test, self.ys_test, color='b', s=5)
-        plt.plot(self.xs_test, self.y_pred, color='r')
+        plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data")
+        plt.plot(self.xs_test, self.y_pred, color='r', label="Best fit")
         plt.title('Linear Regression Model')
-        plt.ylabel('y (Test Data)')
-        plt.xlabel('x (Test Data)')
+        plt.ylabel('y (Output)')
+        plt.xlabel('x (Input)')
+        plt.legend()
         plt.savefig('plots/LinearRegression_Test-Model-Viz.png')
         plt.show()
         print("Linear Regression Model Plot saved...")

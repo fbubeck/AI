@@ -16,8 +16,10 @@ class Exploration():
 
         px = 1/plt.rcParams['figure.dpi']  
         __fig = plt.figure(figsize=(800*px, 600*px))
-        plt.scatter(xs_train_sorted, ys_train_sorted, color='b', s=5)
-        plt.suptitle('Training Data (Input/Output)')
+        plt.scatter(xs_train_sorted, ys_train_sorted, color='b', s=1)
+        plt.title('Training Data (Input/Output)')
+        plt.ylabel('y (Output)')
+        plt.xlabel('x (Input)')
         plt.savefig('plots/DataExploration.png')
         plt.show()
         print("Exploration Plot saved...")

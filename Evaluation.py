@@ -30,7 +30,7 @@ class Evaluation:
         plt.scatter(self.decisionTree_test[1], self.decisionTree_test[0], s=100, c='green', alpha=0.3)
         plt.scatter(self.randomForest_test[1], self.randomForest_training, s=100, c='orange', alpha=1)
         plt.scatter(self.randomForest_test[1], self.randomForest_test[0], s=100, c='orange', alpha=0.3)
-        plt.legend(["TensorFlow Neural Network (Training)", "TensorFlow Neural Network (Inference)", "Linear Regression (Training)", "Linear Regression (Inference)", "Decision Tree Regressor (Training)", "Decision Tree Regressor (Inference)", "Random Forest Regressor (Training)", "Random Forest Regressor(Inference)"], loc="upper right")
+        plt.legend(["TensorFlow Neural Network (Training)", "TensorFlow Neural Network (Inference)", "Linear Regression (Training)", "Linear Regression (Inference)", "Decision Tree Regressor (Training)", "Decision Tree Regressor (Inference)", "Random Forest Regressor (Training)", "Random Forest Regressor (Inference)"], loc="upper right")
         plt.savefig('plots/Algorithms_Evaluation.png')
         plt.show()
         print("Evaluation Plot saved...")

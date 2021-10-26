@@ -49,7 +49,7 @@ class TensorFlow():
             profile_batch='500,520'
         )
 
-        # Modelfitting
+        # Modeling
         start_training = time()
         self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
             tensorboard_callback])
@@ -92,7 +92,7 @@ class TensorFlow():
         __fig = plt.figure(figsize=(800*px, 600*px))
         plt.plot(self.history.history['loss'], 'blue')
         plt.plot(self.history.history['val_loss'], 'red')
-        plt.title('Training loss')
+        plt.title('Neural Network Training loss history')
         plt.ylabel('loss (log scale)')
         plt.xlabel('epoch')
         plt.yscale('log')
