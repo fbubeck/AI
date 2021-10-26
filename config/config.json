@@ -6,7 +6,7 @@
     },
     "TensorFlow":{
         "learning_rate":0.001,
-        "n_epochs":35,
+        "n_epochs":40,
         "n_units":1
     },
     "LinearRegression":{

@@ -34,8 +34,7 @@ def main():
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
     linearRegression = LinearRegression.LinearRegression(train_data, test_data)
     decisionTree = DecisionTree.DecisionTree(train_data, test_data)
-    randomForest = RandomForestRegressor.RandomForest(
-        train_data, test_data)
+    randomForest = RandomForestRegressor.RandomForest(train_data, test_data)
 
     # Tensorflow
     tensorFlow_training = tensorFlow.train()
@@ -57,7 +56,8 @@ def main():
 
     # Algorithm Comparison/Evaluation
     AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
-                                                 tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
+                                                 tensorFlow_test, linearRegression_training, linearRegression_test, 
+                                                 decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
     AlgorithmsEvaluation.plot()
 
 
