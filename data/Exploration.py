@@ -7,17 +7,17 @@ class Exploration():
         self.train_data = train_data
         self.test_data = test_data
 
-    def analyseData(self):
+    def plot(self):
         xs_train = np.matrix(self.train_data[0]).T.A
         ys_train = np.matrix(self.train_data[1]).T.A
 
         xs_train_sorted = np.sort(xs_train)
         ys_train_sorted = np.sort(ys_train)
 
-        __fig, __axs = plt.subplots(2)
-        __fig.suptitle('Training Data (Input/Output)')
-        __axs[0].plot(xs_train_sorted, 'blue')
-        __axs[1].plot(ys_train_sorted, 'red')
+        px = 1/plt.rcParams['figure.dpi']  
+        __fig = plt.figure(figsize=(800*px, 600*px))
+        plt.scatter(xs_train_sorted, ys_train_sorted, color='b', s=5)
+        plt.suptitle('Training Data (Input/Output)')
         plt.savefig('plots/DataExploration.png')
         plt.show()
         print("Exploration Plot saved...")

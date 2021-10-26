@@ -35,6 +35,7 @@ class LinearRegression():
         # Test Data
         self.xs_test = np.matrix(self.test_data[0]).T.A
         self.ys_test = np.matrix(self.test_data[1]).T.A
+        self.varianz = self.test_data[2]
 
         # Predictions
         start_test = time()
@@ -47,21 +48,15 @@ class LinearRegression():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = metrics.mean_squared_error(self.ys_test, self.y_pred)
+        mse = (self.varianz/metrics.mean_squared_error(self.ys_test, self.y_pred))-1
         print("Mean squared error: %.2f" % mse)
         print("")
 
         return duration_test, mse
 
     def plot(self):
-        plt.scatter(self.xs_train, self.ys_train, color='b', s=5)
-        plt.plot(self.xs_train, self.y_pred, color='r')
-        plt.title('Linear Regression Model')
-        plt.ylabel('y (Train Data)')
-        plt.xlabel('x (Train Data)')
-        plt.savefig('plots/LinearRegression_Training-Model-Viz.png')
-        plt.show()
-
+        px = 1/plt.rcParams['figure.dpi']  
+        __fig = plt.figure(figsize=(800*px, 600*px))
         plt.scatter(self.xs_test, self.ys_test, color='b', s=5)
         plt.plot(self.xs_test, self.y_pred, color='r')
         plt.title('Linear Regression Model')

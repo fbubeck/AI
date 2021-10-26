@@ -34,6 +34,7 @@ class DecisionTree():
         # Test Data
         xs_test = np.matrix(self.test_data[0]).T.A
         ys_test = np.matrix(self.test_data[1]).T.A
+        self.varianz = self.test_data[2]
 
         # Predictions
         start_test = time()
@@ -46,7 +47,7 @@ class DecisionTree():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = metrics.mean_squared_error(ys_test, y_pred)
+        mse = (self.varianz/metrics.mean_squared_error(ys_test, y_pred))-1
         print("Mean squared error: %.2f" % mse)
         print("")
 

@@ -16,29 +16,29 @@ class Evaluation:
         self.randomForest_training = randomForest_training
         self.randomForest_test = randomForest_test
 
-    def evaluateAlgorithms(self):
-        __fig = plt.figure()
+    def plot(self):
+        px = 1/plt.rcParams['figure.dpi']  
+        __fig = plt.figure(figsize=(800*px, 600*px))
         plt.ylabel('Duration [in seconds]')
         plt.xlabel('Mean Squarred Error')
-        plt.title('Training/Inference duration and mse of different algorithms')
+        plt.title('Training/Inference duration and mse of different ML-Algorithms')
         plt.scatter(
-            self.tensorFlow_test[1], self.tensorFlow_training, s=100, c='blue', alpha=0.3)
-        plt.scatter(
-            self.linearRegression_test[1], self.linearRegression_training, s=100, c='red', alpha=0.3)
-        plt.scatter(
-            self.decisionTree_test[1], self.decisionTree_training, s=100, c='green', alpha=0.3)
-        plt.scatter(
-            self.randomForest_test[1], self.randomForest_training, s=100, c='orange', alpha=0.3)
+            self.tensorFlow_test[1], self.tensorFlow_training, s=100, c='blue', alpha=1)
         plt.scatter(self.tensorFlow_test[1],
-                    self.tensorFlow_test[0], s=100, c='blue', alpha=1)
+                    self.tensorFlow_test[0], s=100, c='blue', alpha=0.3)
         plt.scatter(
-            self.linearRegression_test[1], self.linearRegression_test[0], s=100, c='red', alpha=1)
+            self.linearRegression_test[1], self.linearRegression_training, s=100, c='red', alpha=1)
         plt.scatter(
-            self.decisionTree_test[1], self.decisionTree_test[0], s=100, c='green', alpha=1)
+            self.linearRegression_test[1], self.linearRegression_test[0], s=100, c='red', alpha=0.3)
         plt.scatter(
-            self.randomForest_test[1], self.randomForest_test[0], s=100, c='orange', alpha=1)
-        plt.legend(["TensorFlow Neural Network (Training)", "Linear Regression (Training)", "Decision Tree Regressor (Training)", "Random Forest Regressor (Training)",
-                   "TensorFlow Neural Network (Inference)", "Linear Regression (Inference)", "Decision Tree Regressor (Inference)", "Random Forest Regressor(Inference)"], loc="upper left")
+            self.decisionTree_test[1], self.decisionTree_training, s=100, c='green', alpha=1)
+        plt.scatter(
+            self.decisionTree_test[1], self.decisionTree_test[0], s=100, c='green', alpha=0.3)
+        plt.scatter(
+            self.randomForest_test[1], self.randomForest_training, s=100, c='orange', alpha=1)
+        plt.scatter(
+            self.randomForest_test[1], self.randomForest_test[0], s=100, c='orange', alpha=0.3)
+        plt.legend(["TensorFlow Neural Network (Training)", "TensorFlow Neural Network (Inference)", "Linear Regression (Training)", "Linear Regression (Inference)", "Decision Tree Regressor (Training)", "Decision Tree Regressor (Inference)", "Random Forest Regressor (Training)", "Random Forest Regressor(Inference)"], loc="upper right")
         plt.savefig('plots/Algorithms_Evaluation.png')
         plt.show()
         print("Evaluation Plot saved...")

@@ -23,12 +23,12 @@ def main():
 
     # Get Sample Data
     sampleData = SampleData.SampleData(n_numbers, min_bias, max_bias)
-    train_data = sampleData.getData()
-    test_data = sampleData.getData()
+    train_data = sampleData.get_Data()
+    test_data = sampleData.get_Data()
 
     # Data Exploration
     exploration = Exploration.Exploration(train_data, test_data)
-    exploration.analyseData()
+    exploration.plot()
 
     # Creating Algorithm Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data)
@@ -58,7 +58,7 @@ def main():
     # Algorithm Comparison/Evaluation
     AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
                                                  tensorFlow_test, linearRegression_training, linearRegression_test, decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
-    AlgorithmsEvaluation.evaluateAlgorithms()
+    AlgorithmsEvaluation.plot()
 
 
 if __name__ == "__main__":
