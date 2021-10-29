@@ -1,12 +1,12 @@
 {
     "GlobalParameters":{
         "n_numbers":10000,
-        "min_bias":-200,
-        "max_bias":200
+        "min_bias":-2000,
+        "max_bias":2000
     },
     "TensorFlow":{
         "learning_rate":0.001,
-        "n_epochs":30,
+        "n_epochs":35,
         "n_units":1
     },
     "LinearRegression":{

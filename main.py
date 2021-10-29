@@ -37,27 +37,28 @@ def main():
     randomForest = RandomForestRegressor.RandomForest(train_data, test_data)
 
     # Tensorflow
-    tensorFlow_training = tensorFlow.train()
-    tensorFlow_test = tensorFlow.test()
+    tensorFlow_training_duration, tensorFlow_training_mse  = tensorFlow.train()
+    tensorFlow_test_duration, tensorFlow_test_mse  = tensorFlow.test()
     tensorFlow.plot()
 
     # Linear Regression
-    linearRegression_training = linearRegression.train()
-    linearRegression_test = linearRegression.test()
+    linearRegression_training_duration, linearRegression_training_mse  = linearRegression.train()
+    linearRegression_test_duration, linearRegression_test_mse = linearRegression.test()
     linearRegression.plot()
 
     # Decision Tree
-    decisionTree_training = decisionTree.train()
-    decisionTree_test = decisionTree.test()
+    decisionTree_training_duration, decisionTree_training_mse  = decisionTree.train()
+    decisionTree_test_duration, decisionTree_test_mse = decisionTree.test()
 
     # Random Forest
-    randomForest_training = randomForest.train()
-    randomForest_test = randomForest.test()
+    randomForest_training_duration, randomForest_training_mse = randomForest.train()
+    randomForest_test_duration, randomForest_test_mse  = randomForest.test()
 
     # Algorithm Comparison/Evaluation
-    AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow, tensorFlow_training,
-                                                 tensorFlow_test, linearRegression_training, linearRegression_test, 
-                                                 decisionTree_training, decisionTree_test, randomForest_training, randomForest_test)
+    AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow_training_duration, tensorFlow_training_mse, tensorFlow_test_duration, tensorFlow_test_mse, 
+        linearRegression_training_duration, linearRegression_training_mse, linearRegression_test_duration, linearRegression_test_mse, 
+        decisionTree_training_duration, decisionTree_training_mse, decisionTree_test_duration, decisionTree_test_mse,
+        randomForest_training_duration, randomForest_training_mse, randomForest_test_duration, randomForest_test_mse)
     AlgorithmsEvaluation.plot()
 
 

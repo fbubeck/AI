@@ -13,7 +13,7 @@ class TensorFlow():
         self.train_data = train_data
         self.test_data = test_data
         self.model = 0
-        self.varianz = 0
+        self.varianz = self.test_data[2]
 
     def train(self):
         # read config.json
@@ -58,20 +58,24 @@ class TensorFlow():
         # Time
         duration_training = end_training - start_training
 
+        # Prediction for Training mse
+        y_pred = self.model.predict(self.xs_train)
+
+        mse = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
+
         print('------ TensorFlow ------')
         print(f'Duration Training: {duration_training} seconds')
 
-        return duration_training
+        return duration_training, mse
 
     def test(self):
        # Test Data (Preprocessing)
         self.xs_test = tf.convert_to_tensor(self.test_data[0], dtype=tf.int64)
         self.ys_test = tf.convert_to_tensor(self.test_data[1], dtype=tf.int64)
-        self.varianz = self.test_data[2]
 
         # Predict Data
         start_test = time()
-        self.y_pred = self.model.predict(self.xs_test)
+        y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -80,7 +84,8 @@ class TensorFlow():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE (Mean Squarred Error)
-        mse = (self.varianz/mean_squared_error(self.ys_test, self.y_pred))-1
+        mse = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
+        #mse = (self.varianz/mean_squared_error(self.ys_test, self.y_pred))-1
         print("Mean squared error: %.2f" % mse)
         print("")
 

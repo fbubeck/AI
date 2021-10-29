@@ -24,6 +24,10 @@ class SampleData():
             self.y_array[x] += self.noice[x]
 
         # Berechne die Varianz des Noice für die Berechnung des MSE
-        self.varianz = np.var(self.noice)          
+        self.varianz = np.var(self.noice)
+        print(type(self.noice))
+        print(self.noice)
+        print(self.varianz) 
+        # Funktion für Varianz händisch schreiben         
 
         return self.x_array, self.y_array, self.varianz

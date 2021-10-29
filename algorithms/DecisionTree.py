@@ -2,39 +2,44 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn import metrics
 import numpy as np
 from time import time
-
+from sklearn.metrics import mean_squared_error
 
 class DecisionTree():
     def __init__(self, train_data, test_data):
         self.train_data = train_data
         self.test_data = test_data
         self.model = 0
+        self.varianz = self.test_data[2]
 
     def train(self):
         # Training Data
-        xs_train = np.matrix(self.train_data[0]).T.A
-        ys_train = np.matrix(self.train_data[1]).T.A
+        self.xs_train = np.matrix(self.train_data[0]).T.A
+        self.ys_train = np.matrix(self.train_data[1]).T.A
 
         self.model = DecisionTreeRegressor()
 
         # Modelfitting
         start_training = time()
-        self.model.fit(xs_train, ys_train)
+        self.model.fit(self.xs_train, self.ys_train)
         end_training = time()
 
         # Time
         duration_training = end_training - start_training
 
+        # Prediction for Training mse
+        y_pred = self.model.predict(self.xs_train)
+
+        mse = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
+
         print('------ DecisionTree ------')
         print(f'Duration Training: {duration_training} seconds')
 
-        return duration_training
+        return duration_training, mse
 
     def test(self):
         # Test Data
         xs_test = np.matrix(self.test_data[0]).T.A
         ys_test = np.matrix(self.test_data[1]).T.A
-        self.varianz = self.test_data[2]
 
         # Predictions
         start_test = time()
@@ -47,7 +52,7 @@ class DecisionTree():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = (self.varianz/metrics.mean_squared_error(ys_test, y_pred))-1
+        mse = (mean_squared_error(ys_test, y_pred)/self.varianz)*100
         print("Mean squared error: %.2f" % mse)
         print("")
 

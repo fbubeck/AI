@@ -2,14 +2,14 @@ from sklearn import linear_model, metrics
 import numpy as np
 from matplotlib import pyplot as plt
 from time import time
+from sklearn.metrics import mean_squared_error
 
 
 class LinearRegression():
-    model = 0
-
     def __init__(self, train_data, test_data):
         self.train_data = train_data
         self.test_data = test_data
+        self.varianz = self.test_data[2]
 
     def train(self):
         # Training Data
@@ -25,17 +25,21 @@ class LinearRegression():
         # Time
         duration_training = end_training - start_training
 
+        # Prediction for Training mse
+        y_pred = self.model.predict(self.xs_train)
+
+        mse = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
+
         print('------ LinearRegression ------')
         print(f'Duration Training: {duration_training} seconds')
         print('Coefficients: ', LinearRegression.model.coef_)
 
-        return duration_training
+        return duration_training, mse
 
     def test(self):
         # Test Data
         self.xs_test = np.matrix(self.test_data[0]).T.A
         self.ys_test = np.matrix(self.test_data[1]).T.A
-        self.varianz = self.test_data[2]
 
         # Predictions
         start_test = time()
@@ -48,7 +52,7 @@ class LinearRegression():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = (self.varianz/metrics.mean_squared_error(self.ys_test, self.y_pred))-1
+        mse = (mean_squared_error(self.ys_test, self.y_pred)/self.varianz)*100
         print("Mean squared error: %.2f" % mse)
         print("")
 
