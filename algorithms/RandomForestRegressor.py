@@ -2,9 +2,9 @@ import sklearn
 from sklearn.ensemble import RandomForestRegressor
 from time import time
 import numpy as np
-from sklearn import metrics
 import json
 from sklearn.metrics import mean_squared_error
+from matplotlib import pyplot as plt
 
 
 class RandomForest():
@@ -28,9 +28,9 @@ class RandomForest():
         self.ys_train = np.ravel(self.train_data[1])
 
         # Modelfitting
-        RandomForest.model = RandomForestRegressor(n_estimators=n_estimators)
+        self.model = RandomForestRegressor(n_estimators=n_estimators)
         start_training = time()
-        RandomForest.model.fit(self.xs_train, self.ys_train)
+        self.model.fit(self.xs_train, self.ys_train)
         end_training = time()
 
         # Time
@@ -48,12 +48,12 @@ class RandomForest():
 
     def test(self):
         # Test Data
-        xs_test = np.matrix(self.test_data[0]).T.A
-        ys_test = np.matrix(self.test_data[1]).T.A
+        self.xs_test = np.matrix(self.test_data[0]).T.A
+        self.ys_test = np.matrix(self.test_data[1]).T.A
 
         # Predictions
         start_test = time()
-        y_pred = RandomForest.model.predict(xs_test)
+        self.y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -62,8 +62,22 @@ class RandomForest():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = (mean_squared_error(ys_test, y_pred)/self.varianz)*100
+        mse = (mean_squared_error(self.ys_test, self.y_pred)/self.varianz)*100
         print("Mean squared error: %.2f" % mse)
         print("")
 
         return duration_test, mse
+
+    def plot(self):
+        px = 1/plt.rcParams['figure.dpi']  
+        __fig = plt.figure(figsize=(800*px, 600*px))
+        plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data", alpha=0.5)
+        plt.scatter(self.xs_test, self.y_pred, color='r', s=1, label="Best fit", alpha=0.5)
+        plt.title('Random Forest Model')
+        plt.ylabel('y (Output)')
+        plt.xlabel('x (Input)')
+        plt.legend()
+        plt.savefig('plots/RandomForest_Test-Model-Viz.png')
+        plt.show()
+        print("Random Forest Model Plot saved...")
+        print("")

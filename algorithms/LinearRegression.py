@@ -1,4 +1,4 @@
-from sklearn import linear_model, metrics
+from sklearn import linear_model
 import numpy as np
 from matplotlib import pyplot as plt
 from time import time
@@ -62,7 +62,7 @@ class LinearRegression():
         px = 1/plt.rcParams['figure.dpi']  
         __fig = plt.figure(figsize=(800*px, 600*px))
         plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data")
-        plt.plot(self.xs_test, self.y_pred, color='r', label="Best fit")
+        plt.scatter(self.xs_test, self.y_pred, color='r', s=1, label="Best fit")
         plt.title('Linear Regression Model')
         plt.ylabel('y (Output)')
         plt.xlabel('x (Input)')

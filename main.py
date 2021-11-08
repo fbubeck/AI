@@ -49,10 +49,12 @@ def main():
     # Decision Tree
     decisionTree_training_duration, decisionTree_training_mse  = decisionTree.train()
     decisionTree_test_duration, decisionTree_test_mse = decisionTree.test()
+    decisionTree.plot()
 
     # Random Forest
     randomForest_training_duration, randomForest_training_mse = randomForest.train()
     randomForest_test_duration, randomForest_test_mse  = randomForest.test()
+    randomForest.plot()
 
     # Algorithm Comparison/Evaluation
     AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow_training_duration, tensorFlow_training_mse, tensorFlow_test_duration, tensorFlow_test_mse, 

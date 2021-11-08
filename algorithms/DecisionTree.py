@@ -1,8 +1,8 @@
 from sklearn.tree import DecisionTreeRegressor
-from sklearn import metrics
 import numpy as np
 from time import time
 from sklearn.metrics import mean_squared_error
+from matplotlib import pyplot as plt
 
 class DecisionTree():
     def __init__(self, train_data, test_data):
@@ -38,12 +38,12 @@ class DecisionTree():
 
     def test(self):
         # Test Data
-        xs_test = np.matrix(self.test_data[0]).T.A
-        ys_test = np.matrix(self.test_data[1]).T.A
+        self.xs_test = np.matrix(self.test_data[0]).T.A
+        self.ys_test = np.matrix(self.test_data[1]).T.A
 
         # Predictions
         start_test = time()
-        y_pred = self.model.predict(xs_test)
+        self.y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -52,8 +52,23 @@ class DecisionTree():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = (mean_squared_error(ys_test, y_pred)/self.varianz)*100
+        mse = (mean_squared_error(self.ys_test, self.y_pred)/self.varianz)*100
         print("Mean squared error: %.2f" % mse)
         print("")
 
         return duration_test, mse
+
+    def plot(self):
+        px = 1/plt.rcParams['figure.dpi']  
+        __fig = plt.figure(figsize=(800*px, 600*px))
+        plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data", alpha=0.5)
+        plt.scatter(self.xs_test, self.y_pred, color='r', s=1, label="Best fit", alpha=0.5)
+        plt.title('Decision Tree Model')
+        plt.ylabel('y (Output)')
+        plt.xlabel('x (Input)')
+        plt.legend()
+        plt.savefig('plots/DecisionTree_Test-Model-Viz.png')
+        plt.show()
+        print("Decision Tree Model Plot saved...")
+        print("")
+
