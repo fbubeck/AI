@@ -7,16 +7,18 @@
     "TensorFlow":{
         "learning_rate":0.001,
         "n_epochs":35,
-        "n_units":1
+        "n_units":1,
+        "plot":1
     },
     "LinearRegression":{
-        "empty":"empty"
+        "plot":1
     },
     "DecisionTree":{
-        "empty":"empty"
+        "plot":1
     },
     "RandomForest":{
         "n_estimators":100,
-        "random_state":0
+        "random_state":0,
+        "plot":1
     }
 }

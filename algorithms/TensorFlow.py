@@ -74,7 +74,7 @@ class TensorFlow():
 
         # Predict Data
         start_test = time()
-        self.y_pred = self.model.predict(self.xs_test)
+        y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -83,12 +83,12 @@ class TensorFlow():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE (Mean Squarred Error)
-        mse = (mean_squared_error(self.ys_test, self.y_pred)/self.varianz)*100
+        mse = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
         #mse = (self.varianz/mean_squared_error(self.ys_test, self.y_pred))-1
         print("Mean squared error: %.2f" % mse)
         print("")
 
-        return duration_test, mse
+        return duration_test, mse, y_pred
 
     def plot(self):
         # Plot loss and val_loss
@@ -104,17 +104,4 @@ class TensorFlow():
         plt.savefig('plots/TensorFlow_Loss-Epochs-Plot.png')
         plt.show()
         print("TensorFlow loss Plot saved...")
-        print("")
-
-
-        __fig = plt.figure(figsize=(800*px, 600*px))
-        plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data", alpha=0.5)
-        plt.scatter(self.xs_test, self.y_pred, color='r', s=1, label="Best fit", alpha=0.5)
-        plt.title('TensorFlow Model')
-        plt.ylabel('y (Output)')
-        plt.xlabel('x (Input)')
-        plt.legend()
-        plt.savefig('plots/TesorFlow_Test-Model-Viz.png')
-        plt.show()
-        print("TensorFlow Model Plot saved...")
         print("")

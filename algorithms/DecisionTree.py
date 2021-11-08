@@ -43,7 +43,7 @@ class DecisionTree():
 
         # Predictions
         start_test = time()
-        self.y_pred = self.model.predict(self.xs_test)
+        y_pred = self.model.predict(self.xs_test)
         end_test = time()
 
         # Time
@@ -52,23 +52,9 @@ class DecisionTree():
         print(f'Duration Inference: {duration_test} seconds')
 
         # MSE
-        mse = (mean_squared_error(self.ys_test, self.y_pred)/self.varianz)*100
+        mse = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
         print("Mean squared error: %.2f" % mse)
         print("")
 
-        return duration_test, mse
-
-    def plot(self):
-        px = 1/plt.rcParams['figure.dpi']  
-        __fig = plt.figure(figsize=(800*px, 600*px))
-        plt.scatter(self.xs_test, self.ys_test, color='b', s=1, label="Data", alpha=0.5)
-        plt.scatter(self.xs_test, self.y_pred, color='r', s=1, label="Best fit", alpha=0.5)
-        plt.title('Decision Tree Model')
-        plt.ylabel('y (Output)')
-        plt.xlabel('x (Input)')
-        plt.legend()
-        plt.savefig('plots/DecisionTree_Test-Model-Viz.png')
-        plt.show()
-        print("Decision Tree Model Plot saved...")
-        print("")
+        return duration_test, mse, y_pred
 
