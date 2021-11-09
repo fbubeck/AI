@@ -8,7 +8,7 @@ class SampleData():
         self.array_length = array_length
         self.x_array = np.empty(self.array_length, dtype=object)
         self.y_array = np.empty(self.array_length, dtype=object)
-        self.noice = np.empty(self.array_length, dtype=object)
+        self.noise = np.empty(self.array_length, dtype=object)
         self.min_bias = min_bias
         self.max_bias = max_bias
         self.varianz = 0
@@ -20,14 +20,13 @@ class SampleData():
             IntRandom = random.randint(1, self.array_length)
             self.x_array[x] = IntRandom
             self.y_array[x] = IntRandom*2
-            self.noice[x] = random.randint(self.min_bias, self.max_bias)
-            self.y_array[x] += self.noice[x]
+            self.noise[x] = random.randint(self.min_bias, self.max_bias)
+            self.y_array[x] += self.noise[x]
 
         # Berechne die Varianz des Noice für die Berechnung des MSE
-        self.varianz = np.var(self.noice)
-        print(type(self.noice))
-        print(self.noice)
-        print(self.varianz) 
+        self.varianz = np.var(self.noise)
+        print("Noise: ", self.noise)
+        print("Varianz of Noise: ", self.varianz) 
         # Funktion für Varianz händisch schreiben         
 
         return self.x_array, self.y_array, self.varianz

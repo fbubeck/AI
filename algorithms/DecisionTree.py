@@ -3,6 +3,7 @@ import numpy as np
 from time import time
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
+import json
 
 class DecisionTree():
     def __init__(self, train_data, test_data):
@@ -12,11 +13,17 @@ class DecisionTree():
         self.varianz = self.test_data[2]
 
     def train(self):
+        # read config.json
+        with open('config/config.json') as file:
+            config = json.load(file)
+
+        max_depth = config["DecisionTree"]["max_depth"]
+
         # Training Data
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.matrix(self.train_data[1]).T.A
 
-        self.model = DecisionTreeRegressor()
+        self.model = DecisionTreeRegressor(max_depth=max_depth)
 
         # Modelfitting
         start_training = time()

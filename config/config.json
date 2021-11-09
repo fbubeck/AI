@@ -14,7 +14,8 @@
         "plot":1
     },
     "DecisionTree":{
-        "plot":1
+        "plot":1,
+        "max_depth": 6
     },
     "RandomForest":{
         "n_estimators":100,
