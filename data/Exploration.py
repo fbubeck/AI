@@ -17,10 +17,11 @@ class Exploration():
         px = 1/plt.rcParams['figure.dpi']  
         __fig = plt.figure(figsize=(800*px, 600*px))
         plt.scatter(xs_train_sorted, ys_train_sorted, color='b', s=1, alpha=0.5)
-        plt.title('Training Data (Input/Output)')
+        plt.title('Training Data (n=' + str(len(xs_train)) + ')')
         plt.ylabel('y (Output)')
         plt.xlabel('x (Input)')
+        plt.text(1, 20000, ("Formula: y = 2x with generated Noise"), bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
         plt.savefig('plots/DataExploration.png')
-        plt.show()
+        #plt.show()
         print("Exploration Plot saved...")
         print("")

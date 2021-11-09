@@ -29,7 +29,7 @@ class Evaluation:
         self.randomForest_training_duration = randomForest_training_duration
         self.randomForest_training_mse = randomForest_training_mse
         self.randomForest_test_duration = randomForest_test_duration
-        self.randomForest_test_mse = randomForest_test_mse,
+        self.randomForest_test_mse = randomForest_test_mse
         self.randomForest_y_pred = randomForest_y_pred
 
     def plot(self):
@@ -53,12 +53,16 @@ class Evaluation:
         axs2.title.set_text('Linear Regression Model')
         axs3.title.set_text('Decision Tree Model')
         axs4.title.set_text('Random Forest Model')
-        axs1.legend(loc="upper right")
-        axs2.legend(loc="upper right")
-        axs3.legend(loc="upper right")
-        axs4.legend(loc="upper right")
+        axs1.legend(loc="upper left", markerscale=10, scatterpoints=1)
+        axs2.legend(loc="upper left", markerscale=10, scatterpoints=1)
+        axs3.legend(loc="upper left", markerscale=10, scatterpoints=1)
+        axs4.legend(loc="upper left", markerscale=10, scatterpoints=1)
+        axs1.text(.95, 0.05, ("Error: " + str(self.tensorFlow_test_mse)), ha='right', va='bottom', transform=axs1.transAxes, bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
+        axs2.text(.95, 0.05, ("Error: " + str(self.linearRegression_test_mse)), ha='right', va='bottom', transform=axs2.transAxes, bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
+        axs3.text(.95, 0.05, ("Error: " + str(self.decisionTree_test_mse)), ha='right', va='bottom', transform=axs3.transAxes, bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
+        axs4.text(.95, 0.05, ("Error: " + str(self.randomForest_test_mse)), ha='right', va='bottom', transform=axs4.transAxes, bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
         plt.savefig('plots/Algorithms_Model_Comparison.png')
-        plt.show()
+        #plt.show()
 
 
 
@@ -76,6 +80,6 @@ class Evaluation:
         plt.scatter(self.randomForest_test_mse, self.randomForest_test_duration, s=120, c='orange', alpha=0.6, marker='v')
         plt.legend(["TensorFlow Neural Network (Training)", "TensorFlow Neural Network (Inference)", "Linear Regression (Training)", "Linear Regression (Inference)", "Decision Tree Regressor (Training)", "Decision Tree Regressor (Inference)", "Random Forest Regressor (Training)", "Random Forest Regressor (Inference)"], loc="upper center")
         plt.savefig('plots/Algorithms_Evaluation.png')
-        plt.show()
+        #plt.show()
         print("Evaluation Plot saved...")
         print("")
