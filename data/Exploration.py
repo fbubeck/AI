@@ -20,7 +20,7 @@ class Exploration():
         plt.title('Training Data (n=' + str(len(xs_train)) + ')')
         plt.ylabel('y (Output)')
         plt.xlabel('x (Input)')
-        plt.text(1, 20000, ("Formula: y = 2x with generated Noise"), bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
+        plt.text(1, 20000, ("Formula: y = (2 + Noise) * x"), bbox=dict(boxstyle = "square", facecolor = "white", alpha = 0.5))
         plt.savefig('plots/DataExploration.png')
         #plt.show()
         print("Exploration Plot saved...")
