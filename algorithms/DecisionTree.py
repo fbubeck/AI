@@ -6,24 +6,19 @@ from matplotlib import pyplot as plt
 import json
 
 class DecisionTree():
-    def __init__(self, train_data, test_data):
+    def __init__(self, train_data, test_data, max_depth):
         self.train_data = train_data
         self.test_data = test_data
+        self.max_depth = max_depth
         self.model = 0
         self.varianz = self.test_data[2]
 
     def train(self):
-        # read config.json
-        with open('config/config.json') as file:
-            config = json.load(file)
-
-        max_depth = config["DecisionTree"]["max_depth"]
-
         # Training Data
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.matrix(self.train_data[1]).T.A
 
-        self.model = DecisionTreeRegressor(max_depth=max_depth)
+        self.model = DecisionTreeRegressor(max_depth=self.max_depth)
         #self.model = DecisionTreeRegressor()
 
         # Modelfitting

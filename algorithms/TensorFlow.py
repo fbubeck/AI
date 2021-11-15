@@ -8,34 +8,28 @@ import json
 
 
 class TensorFlow():
-    def __init__(self, train_data, test_data):
+    def __init__(self, train_data, test_data, learning_rate, n_epochs, units):
         self.train_data = train_data
         self.test_data = test_data
+        self.learning_rate = learning_rate
+        self.n_epochs = n_epochs
+        self.units = units
         self.model = 0
         self.varianz = self.test_data[2]
 
     def train(self):
-        # read config.json
-        with open('config/config.json') as file:
-            config = json.load(file)
-
         # Training Data (Preprocessing)
         self.xs_train = tf.convert_to_tensor(
             self.train_data[0], dtype=tf.int64)
         self.ys_train = tf.convert_to_tensor(
             self.train_data[1], dtype=tf.int64)
 
-        # Training Parameters
-        learning_rate = config["TensorFlow"]["learning_rate"]
-        n_epochs = config["TensorFlow"]["n_epochs"]
-        units = config["TensorFlow"]["n_units"]
-
         # Initializing Model
         self.model = keras.Sequential(
-            [keras.layers.Dense(units=units, input_shape=[1])])
+            [keras.layers.Dense(units=self.units, input_shape=[1])])
 
         # Define Optimizer
-        opt = tf.keras.optimizers.Adam(lr=learning_rate)
+        opt = tf.keras.optimizers.Adam(lr=self.learning_rate)
 
         self.model.compile(
             optimizer=opt, loss='mean_squared_error')
@@ -50,7 +44,7 @@ class TensorFlow():
 
         # Modeling
         start_training = time()
-        self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=n_epochs, callbacks=[
+        self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=self.n_epochs, callbacks=[
             tensorboard_callback])
         end_training = time()
 
