@@ -60,12 +60,12 @@ class TensorFlow():
         # Prediction for Training mse
         y_pred = self.model.predict(self.xs_train)
 
-        mse = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
+        error = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
 
         print('------ TensorFlow ------')
         print(f'Duration Training: {duration_training} seconds')
 
-        return duration_training, mse
+        return duration_training, error
 
     def test(self):
        # Test Data (Preprocessing)
@@ -82,13 +82,13 @@ class TensorFlow():
 
         print(f'Duration Inference: {duration_test} seconds')
 
-        # MSE (Mean Squarred Error)
-        mse = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
+        # Error
+        error = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
         #mse = (self.varianz/mean_squared_error(self.ys_test, self.y_pred))-1
-        print("Mean squared error: %.2f" % mse)
+        print("Mean squared error: %.2f" % error)
         print("")
 
-        return duration_test, mse, y_pred
+        return duration_test, error, y_pred
 
     def plot(self):
         # Plot loss and val_loss

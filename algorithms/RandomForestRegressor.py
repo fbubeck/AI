@@ -39,12 +39,12 @@ class RandomForest():
         # Prediction for Training mse
         y_pred = self.model.predict(self.xs_train)
 
-        mse = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
+        error = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
 
         print('------ RandomForest ------')
         print(f'Duration Training: {duration_training} seconds')
 
-        return duration_training, mse
+        return duration_training, error
 
     def test(self):
         # Test Data
@@ -61,9 +61,9 @@ class RandomForest():
 
         print(f'Duration Inference: {duration_test} seconds')
 
-        # MSE
-        mse = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
-        print("Mean squared error: %.2f" % mse)
+        # Error
+        error = (mean_squared_error(self.ys_test, y_pred)/self.varianz)*100
+        print("Mean squared error: %.2f" % error)
         print("")
 
-        return duration_test, mse, y_pred
+        return duration_test, error, y_pred

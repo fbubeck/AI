@@ -38,27 +38,27 @@ def main():
     randomForest = RandomForestRegressor.RandomForest(train_data, test_data)
 
     # Tensorflow
-    tensorFlow_training_duration, tensorFlow_training_mse  = tensorFlow.train()
-    tensorFlow_test_duration, tensorFlow_test_mse, tensorFlow_y_pred  = tensorFlow.test()
+    tensorFlow_training_duration, tensorFlow_training_error  = tensorFlow.train()
+    tensorFlow_test_duration, tensorFlow_test_error, tensorFlow_y_pred  = tensorFlow.test()
     tensorFlow.plot()
 
     # Linear Regression
-    linearRegression_training_duration, linearRegression_training_mse  = linearRegression.train()
-    linearRegression_test_duration, linearRegression_test_mse, linearRegression_y_pred = linearRegression.test()
+    linearRegression_training_duration, linearRegression_training_error  = linearRegression.train()
+    linearRegression_test_duration, linearRegression_test_error, linearRegression_y_pred = linearRegression.test()
 
     # Decision Tree
-    decisionTree_training_duration, decisionTree_training_mse  = decisionTree.train()
-    decisionTree_test_duration, decisionTree_test_mse, decisionTree_y_pred = decisionTree.test()
+    decisionTree_training_duration, decisionTree_training_error  = decisionTree.train()
+    decisionTree_test_duration, decisionTree_test_error, decisionTree_y_pred = decisionTree.test()
 
     # Random Forest
-    randomForest_training_duration, randomForest_training_mse = randomForest.train()
-    randomForest_test_duration, randomForest_test_mse, randomForest_y_pred  = randomForest.test()
+    randomForest_training_duration, randomForest_training_error = randomForest.train()
+    randomForest_test_duration, randomForest_test_error, randomForest_y_pred  = randomForest.test()
 
     # Algorithm Comparison/Evaluation
-    AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow_training_duration, tensorFlow_training_mse, tensorFlow_test_duration, tensorFlow_test_mse, tensorFlow_y_pred, 
-        linearRegression_training_duration, linearRegression_training_mse, linearRegression_test_duration, linearRegression_test_mse, linearRegression_y_pred, 
-        decisionTree_training_duration, decisionTree_training_mse, decisionTree_test_duration, decisionTree_test_mse, decisionTree_y_pred,
-        randomForest_training_duration, randomForest_training_mse, randomForest_test_duration, randomForest_test_mse, randomForest_y_pred)
+    AlgorithmsEvaluation = Evaluation.Evaluation(train_data, test_data, tensorFlow_training_duration, tensorFlow_training_error, tensorFlow_test_duration, tensorFlow_test_error, tensorFlow_y_pred, 
+        linearRegression_training_duration, linearRegression_training_error, linearRegression_test_duration, linearRegression_test_error, linearRegression_y_pred, 
+        decisionTree_training_duration, decisionTree_training_error, decisionTree_test_duration, decisionTree_test_error, decisionTree_y_pred,
+        randomForest_training_duration, randomForest_training_error, randomForest_test_duration, randomForest_test_error, randomForest_y_pred)
     AlgorithmsEvaluation.plot()
 
 
