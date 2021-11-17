@@ -5,7 +5,6 @@ from algorithms import DecisionTree
 from algorithms import RandomForestRegressor
 from data import SampleData
 from data import Exploration
-import Evaluation
 import json
 from matplotlib import pyplot as plt
 
@@ -86,7 +85,6 @@ def main():
     # Linear Regression
     linearRegression_training_duration, linearRegression_training_error  = linearRegression.train()
     linearRegression_test_duration, linearRegression_test_error, linearRegression_y_pred = linearRegression.test()
-    linearRegression.plot()
     linearRegression2_training_duration, linearRegression2_training_error  = linearRegression2.train()
     linearRegression2_test_duration, linearRegression2_test_error, linearRegression2_y_pred = linearRegression2.test()
     linearRegression3_training_duration, linearRegression3_training_error  = linearRegression3.train()
@@ -167,9 +165,9 @@ def main():
     fig = plt.figure(figsize=(1200*px, 800*px))
     ax1 = fig.add_subplot(121)
     ax2 = fig.add_subplot(122)
-    ax1.set_ylabel('log scale: Duration [in seconds]')
+    ax1.set_ylabel('Duration [in seconds; log scale]')
     ax1.set_xlabel('Model-Performance (Error)')
-    ax2.set_ylabel('log scale: Duration [in seconds]')
+    ax2.set_ylabel('Duration [in seconds; log scale]')
     ax2.set_xlabel('Model-Performance (Error)')
     fig.suptitle('Training/Inference duration and error of different ML-Algorithms')
     ax1.plot(tf_training_x, tf_training_y, '-o', c='blue', alpha=0.6)
@@ -182,8 +180,7 @@ def main():
     ax2.plot(rf_test_x, rf_test_y, '-o', c='orange', alpha=0.6)
     ax1.title.set_text('Training')
     ax2.title.set_text('Inference')
-    ax1.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc="upper left")
-    ax2.legend(["TensorFlow Neural Network", "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc="upper right")
+    plt.legend(["TensorFlow Neural Network", "Linear/Poly Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc='lower center', ncol=4, bbox_transform=fig.transFigure, bbox_to_anchor=(0.5,0))
     ax1.set_yscale('log')
     ax2.set_yscale('log')
     plt.savefig('plots/Algorithms_Evaluation.png')

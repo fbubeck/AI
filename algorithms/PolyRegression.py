@@ -67,6 +67,3 @@ class PolyRegression():
         print("")
 
         return duration_test, error, y_pred
-
-    def plot(self):
-        pass
