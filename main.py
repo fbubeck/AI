@@ -58,18 +58,20 @@ def main():
 
     # Creating Algorithm Objects
     tensorFlow = TensorFlow.TensorFlow(train_data, test_data, tf_learning_rate, tf_n_epochs, tf_units)
-    linearRegression = PolyRegression.PolyRegression(train_data, test_data, lr_degree)
-    decisionTree = DecisionTree.DecisionTree(train_data, test_data, dt_max_depth)
-    randomForest = RandomForestRegressor.RandomForest(train_data, test_data, rf_n_estimators, rf_random_state)
     tensorFlow2 = TensorFlow.TensorFlow(train_data, test_data, tf2_learning_rate, tf2_n_epochs, tf2_units)
-    linearRegression2 = PolyRegression.PolyRegression(train_data, test_data, lr2_degree)
-    decisionTree2 = DecisionTree.DecisionTree(train_data, test_data, dt2_max_depth)
-    randomForest2 = RandomForestRegressor.RandomForest(train_data, test_data, rf2_n_estimators, rf2_random_state)
     tensorFlow3 = TensorFlow.TensorFlow(train_data, test_data, tf3_learning_rate, tf3_n_epochs, tf3_units)
+    
+    linearRegression = PolyRegression.PolyRegression(train_data, test_data, lr_degree)
+    linearRegression2 = PolyRegression.PolyRegression(train_data, test_data, lr2_degree)
     linearRegression3 = PolyRegression.PolyRegression(train_data, test_data, lr3_degree)
+    
+    decisionTree = DecisionTree.DecisionTree(train_data, test_data, dt_max_depth)
+    decisionTree2 = DecisionTree.DecisionTree(train_data, test_data, dt2_max_depth)
     decisionTree3 = DecisionTree.DecisionTree(train_data, test_data, dt3_max_depth)
+    
+    randomForest = RandomForestRegressor.RandomForest(train_data, test_data, rf_n_estimators, rf_random_state)
+    randomForest2 = RandomForestRegressor.RandomForest(train_data, test_data, rf2_n_estimators, rf2_random_state)
     randomForest3 = RandomForestRegressor.RandomForest(train_data, test_data, rf3_n_estimators, rf3_random_state)
-
 
     # Tensorflow
     tensorFlow_training_duration, tensorFlow_training_error  = tensorFlow.train()
@@ -90,7 +92,6 @@ def main():
     linearRegression3_training_duration, linearRegression3_training_error  = linearRegression3.train()
     linearRegression3_test_duration, linearRegression3_test_error, linearRegression3_y_pred = linearRegression3.test()
 
-
     # Decision Tree
     decisionTree_training_duration, decisionTree_training_error  = decisionTree.train()
     decisionTree_test_duration, decisionTree_test_error, decisionTree_y_pred = decisionTree.test()
@@ -99,7 +100,6 @@ def main():
     decisionTree3_training_duration, decisionTree3_training_error  = decisionTree3.train()
     decisionTree3_test_duration, decisionTree3_test_error, decisionTree3_y_pred = decisionTree3.test()
 
-
     # Random Forest
     randomForest_training_duration, randomForest_training_error = randomForest.train()
     randomForest_test_duration, randomForest_test_error, randomForest_y_pred  = randomForest.test()
@@ -107,7 +107,6 @@ def main():
     randomForest2_test_duration, randomForest2_test_error, randomForest2_y_pred  = randomForest2.test()
     randomForest3_training_duration, randomForest3_training_error = randomForest3.train()
     randomForest3_test_duration, randomForest3_test_error, randomForest3_y_pred  = randomForest3.test()
-
 
     # Plots
     xs_test = test_data[0]
@@ -181,8 +180,8 @@ def main():
     ax1.title.set_text('Training')
     ax2.title.set_text('Inference')
     plt.legend(["TensorFlow Neural Network", "Linear/Poly Regression", "Decision Tree Regressor", "Random Forest Regressor"], loc='lower center', ncol=4, bbox_transform=fig.transFigure, bbox_to_anchor=(0.5,0))
-    #ax1.set_yscale('log')
-    #ax2.set_yscale('log')
+    ax1.set_yscale('log')
+    ax2.set_yscale('log')
     plt.savefig('plots/Algorithms_Evaluation.png')
     #plt.show()
     print("Evaluation Plot saved...")
