@@ -6,6 +6,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from time import time
 from sklearn.metrics import mean_squared_error
+from codecarbon import track_emissions
 
 
 class PolyRegression():

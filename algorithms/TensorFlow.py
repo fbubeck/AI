@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 from time import time
 import datetime
 from sklearn.metrics import mean_squared_error
+from codecarbon import track_emissions
 import json
 
 

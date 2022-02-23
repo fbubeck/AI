@@ -5,6 +5,7 @@ import numpy as np
 import json
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
+from codecarbon import track_emissions
 
 
 class RandomForest():

@@ -3,6 +3,7 @@ import numpy as np
 from time import time
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
+from codecarbon import track_emissions
 import json
 
 class DecisionTree():

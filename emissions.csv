@@ -1,0 +1,4 @@
+timestamp,experiment_id,project_name,duration,emissions,energy_consumed,country_name,country_iso_code,region,on_cloud,cloud_provider,cloud_region
+2022-02-23T15:27:37,603b6c55-bf12-4319-9883-ef40c732f0dc,codecarbon,6.556614875793457,5.133296528875552e-06,7.3736280792755855e-06,Germany,DEU,baden-württemberg,N,,
+2022-02-23T15:28:49,a9c45f71-d77f-4f99-b7ea-6d9edf309561,codecarbon,7.444349765777588,6.43218835556186e-06,9.239397023524297e-06,Germany,DEU,baden-württemberg,N,,
+2022-02-23T15:29:50,d6824f75-6c0a-48f5-b7b6-9f1088bc74fe,codecarbon,3.0524723529815674,5.2474857865070364e-08,7.537653109134436e-08,Germany,DEU,baden-württemberg,N,,
