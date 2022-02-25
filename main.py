@@ -168,7 +168,7 @@ def main():
     ax1.set_xlabel('Model-Performance (Error)')
     ax2.set_ylabel('Duration [in seconds; log scale]')
     ax2.set_xlabel('Model-Performance (Error)')
-    fig.suptitle('Training/Inference duration and error of different ML-Algorithms')
+    fig.suptitle('Efficiency of different ML-Algorithms and Parametersets')
     ax1.plot(tf_training_x, tf_training_y, '-o', c='blue', alpha=0.6)
     ax2.plot(tf_test_x, tf_test_y, '-o', c='blue', alpha=0.6)
     ax1.plot(lr_training_x, lr_training_y, '-o', c='red', alpha=0.6)
