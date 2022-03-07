@@ -5,6 +5,7 @@ from time import time
 import datetime
 from sklearn.metrics import mean_squared_error
 from codecarbon import EmissionsTracker
+from pypapi import events, papi_high as high
 import json
 
 
@@ -46,13 +47,17 @@ class TensorFlow():
         )
 
         # Modeling
+
         tracker.start()
         start_training = time()
+        high.start_counters([events.PAPI_FP_OPS, ])
         self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=self.n_epochs, callbacks=[
             tensorboard_callback])
+        n_flops = high.stop_counters()
         end_training = time()
         end_training = time()
         emissions: float = tracker.stop()
+
 
         # Time
         duration_training = end_training - start_training
