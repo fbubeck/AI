@@ -84,9 +84,6 @@ def main():
     tensorFlow3_test_duration, tensorFlow3_test_error, tensorFlow3_y_pred  = tensorFlow3.test()
     tensorFlow3.plot()
 
-    sum_flops = flopth(tensorFlow.train())
-    print(sum_flops)
-
     # Linear Regression
     linearRegression_training_duration, linearRegression_training_error  = linearRegression.train()
     linearRegression_test_duration, linearRegression_test_error, linearRegression_y_pred = linearRegression.test()

@@ -1,11 +1,13 @@
+from functools import reduce
+
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from matplotlib import pyplot as plt
 from time import time
 import datetime
 from sklearn.metrics import mean_squared_error
-from codecarbon import EmissionsTracker
-from pypapi import events, papi_high as high
+#from codecarbon import EmissionsTracker
 import json
 
 
@@ -26,7 +28,7 @@ class TensorFlow():
         self.ys_train = tf.convert_to_tensor(
             self.train_data[1], dtype=tf.int64)
 
-        tracker = EmissionsTracker("TensorFlow")
+        # tracker = EmissionsTracker("TensorFlow")
 
         # Initializing Model
         self.model = keras.Sequential(
@@ -47,28 +49,30 @@ class TensorFlow():
         )
 
         # Modeling
-
-        tracker.start()
+        # tracker.start()
         start_training = time()
-        high.start_counters([events.PAPI_FP_OPS, ])
         self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=self.n_epochs, callbacks=[
             tensorboard_callback])
-        n_flops = high.stop_counters()
         end_training = time()
-        end_training = time()
-        emissions: float = tracker.stop()
-
+        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training
+
+        # Number of Parameter
+        trainableParams = np.sum([np.prod(v.get_shape()) for v in self.model.trainable_weights])
+        nonTrainableParams = np.sum([np.prod(v.get_shape()) for v in self.model.non_trainable_weights])
+        n_params = trainableParams + nonTrainableParams
 
         # Prediction for Training mse
         y_pred = self.model.predict(self.xs_train)
 
         error = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
 
+        # Summary
         print('------ TensorFlow ------')
         print(f'Duration Training: {duration_training} seconds')
+        print("Number of Parameter: ", n_params)
 
         return duration_training, error
 

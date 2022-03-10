@@ -19,18 +19,17 @@ class DecisionTree():
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.matrix(self.train_data[1]).T.A
 
-        tracker = EmissionsTracker("DecisionTree")
+        # tracker = EmissionsTracker("DecisionTree")
 
         self.model = DecisionTreeRegressor(max_depth=self.max_depth)
         #self.model = DecisionTreeRegressor()
 
         # Modelfitting
-        tracker.start()
+        # tracker.start()
         start_training = time()
         self.model.fit(self.xs_train, self.ys_train)
         end_training = time()
-        end_training = time()
-        emissions: float = tracker.stop()
+        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training

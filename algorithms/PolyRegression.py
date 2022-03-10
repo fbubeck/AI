@@ -23,19 +23,18 @@ class PolyRegression():
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.matrix(self.train_data[1]).T.A
 
-        tracker = EmissionsTracker("Regression")
+        # tracker = EmissionsTracker("Regression")
 
         # Modelfitting
         self.model = LinearRegression()
         self.poly = PolynomialFeatures(self.degree)
         xs_TRANS = self.poly.fit_transform(self.xs_train)
-        tracker.start()
+        # tracker.start()
         start_training = time()
         #self.model.fit(self.xs_train, self.ys_train)
         self.model.fit(xs_TRANS, self.ys_train)
         end_training = time()
-        end_training = time()
-        emissions: float = tracker.stop()
+        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training
@@ -45,9 +44,11 @@ class PolyRegression():
 
         error = (mean_squared_error(self.ys_train, y_pred)/self.varianz)*100
 
+        # Summary
         print('------ LinearRegression ------')
         print(f'Duration Training: {duration_training} seconds')
         print('Coefficients: ', self.model.coef_)
+        print("Number of Parameter: ", self.degree + 1)
 
         return duration_training, error
 
