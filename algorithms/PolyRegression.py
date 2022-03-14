@@ -6,8 +6,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 from time import time
 from sklearn.metrics import mean_squared_error
-from codecarbon import EmissionsTracker
-
 
 class PolyRegression():
     def __init__(self, train_data, test_data, lr_degree):
@@ -23,18 +21,15 @@ class PolyRegression():
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.matrix(self.train_data[1]).T.A
 
-        # tracker = EmissionsTracker("Regression")
 
         # Modelfitting
         self.model = LinearRegression()
         self.poly = PolynomialFeatures(self.degree)
         xs_TRANS = self.poly.fit_transform(self.xs_train)
-        # tracker.start()
         start_training = time()
         #self.model.fit(self.xs_train, self.ys_train)
         self.model.fit(xs_TRANS, self.ys_train)
         end_training = time()
-        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training

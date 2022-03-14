@@ -5,9 +5,6 @@ import numpy as np
 import json
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
-from codecarbon import EmissionsTracker
-
-
 
 class RandomForest():
     def __init__(self, train_data, test_data, n_estimators, random_state):
@@ -23,16 +20,12 @@ class RandomForest():
         self.xs_train = np.matrix(self.train_data[0]).T.A
         self.ys_train = np.ravel(self.train_data[1])
 
-        # tracker = EmissionsTracker("RandomForest")
-
 
         # Modelfitting
         self.model = RandomForestRegressor(n_estimators=self.n_estimators)
-        # tracker.start()
         start_training = time()
         self.model.fit(self.xs_train, self.ys_train)
         end_training = time()
-        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training

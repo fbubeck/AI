@@ -1,5 +1,3 @@
-from functools import reduce
-
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -7,9 +5,6 @@ from matplotlib import pyplot as plt
 from time import time
 import datetime
 from sklearn.metrics import mean_squared_error
-#from codecarbon import EmissionsTracker
-import json
-
 
 class TensorFlow():
     def __init__(self, train_data, test_data, learning_rate, n_epochs, units):
@@ -27,8 +22,6 @@ class TensorFlow():
             self.train_data[0], dtype=tf.int64)
         self.ys_train = tf.convert_to_tensor(
             self.train_data[1], dtype=tf.int64)
-
-        # tracker = EmissionsTracker("TensorFlow")
 
         # Initializing Model
         self.model = keras.Sequential(
@@ -49,12 +42,10 @@ class TensorFlow():
         )
 
         # Modeling
-        # tracker.start()
         start_training = time()
         self.history = self.model.fit(self.xs_train, self.ys_train, validation_split=0.33, verbose=1, epochs=self.n_epochs, callbacks=[
             tensorboard_callback])
         end_training = time()
-        # emissions: float = tracker.stop()
 
         # Time
         duration_training = end_training - start_training
